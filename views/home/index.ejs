@@ -1,72 +1,77 @@
 <%- include('../inc/top.ejs') %>
-
-    <div>
-        <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
-            <div class="col-4 ">
-                <div class="card">
+    
+    <div class="row mt-5">
+        <!-- quản trị left -->
+        <div class="col-md-12 col-lg-6 ">
+            <div class="row">
+                <!-- col-6 -->
+                <div class="col-md-6 card p-3">
                     <div class="card-body">
-                        <i class="bi bi-android2"></i>
-                        <p style="font-size: 24px;">số lượng nhập : 1000</p>
+                        <i class='icon bx bxs-user-account fa-3x'></i>
+                        <div class="info">
+                            <h4>Tổng khách hàng</h4>
+                            <p><b>56 khách hàng</b></p>
+                            <p class="info-tong">Tổng số khách hàng được quản lý.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-4 ">
-                <div class="card">
+                <!-- col-6 -->
+                <div class="col-md-6 card p-3">
                     <div class="card-body">
-                        <i class="bi bi-calendar3"></i>
-                        <p style="font-size: 24px;">giá nhập: 20.000.000 vnđ</p>
+                        <i class='icon bx bxs-data fa-3x'></i>
+                        <div class="info">
+                            <h4>Tổng sản phẩm</h4>
+                            <p><b>1850 sản phẩm</b></p>
+                            <p class="info-tong">Tổng số sản phẩm được quản lý.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-4 ">
-                <div class="card">
+                <!-- col-6 -->
+                <div class="col-md-6 card p-3">
                     <div class="card-body">
-                        <p style="font-size: 24px;">số lượng sản phẩm</p>
+                        <i class='icon bx bxs-shopping-bags fa-3x'></i>
+                        <div class="info">
+                            <h4>Tổng đơn hàng</h4>
+                            <p><b>247 đơn hàng</b></p>
+                            <p class="info-tong">Tổng số hóa đơn bán hàng trong tháng.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
-            <div class="col-4 ">
-                <div class="card">
+                <!-- col-6 -->
+                <div class="col-md-6 card p-3">
                     <div class="card-body">
-                        <p style="font-size: 24px;">số lượng xuất: 100</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4 ">
-                <div class="card">
-                    <div class="card-body">
-                        <p style="font-size: 24px;">giá nhập: 40.000.000 vnđ</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4 ">
-                <div class="card">
-                    <div class="card-body">
-                        <p style="font-size: 24px;">sản phẩm</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-6">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="https://static.colearn.vn:8413/v1.0/upload/library/08042022/cach-ve-bieu-do-cot-dia-ly-Ow9IEi.jpg"
-                            alt="" alt="" style="width: 450px; height: 250px;">
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="https://cdn.takeprofit.vn/1636477740692" alt="" style="width: 450px; height: 250px;">
+                        <i class='icon bx bxs-error-alt fa-3x'></i>
+                        <div class="info">
+                            <h4>Sắp hết hàng</h4>
+                            <p><b>4 sản phẩm</b></p>
+                            <p class="info-tong">Số sản phẩm cảnh báo hết cần nhập thêm.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-<%- include('../inc/bottom.ejs') %>
+        <!-- bảng -->
+        <!-- quản trị right -->
+        <div class="col-md-12 col-lg-6">
+            <div class="row m-3">
+                <div class="col-md-12 card ">
+                    <div class="tile card-body">
+                        <h3 class="tile-title">Dữ liệu 6 tháng đầu vào</h3>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 card ">
+                    <div class="tile card-body">
+                        <h3 class="tile-title">Thống kê 6 tháng doanh thu</h3>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <canvas class="embed-responsive-item" id="barChartDemo"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+    
+    <%- include('../inc/bottom.ejs') %>
