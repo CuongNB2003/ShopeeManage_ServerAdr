@@ -1,3 +1,79 @@
 <%- include('../inc/top.ejs') %>
-<h1> Đây là trang thể loại</h1>
+
+    <!-- Thanh Dieu khien -->
+    <div style="text-align: center;" class="row mt-4">
+        <nav class="navbar col-6">
+            <div class="container-fluid">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                        style="width: 300px;">
+                    <button class="btn btn-outline-success" type="submit" style="width: 150px;">Tìm kiếm</button>
+                </form>
+            </div>
+        </nav>
+        <div class="col-2">
+            <a href="/theloai/add">
+                <button type="button" class="btn btn-success" style="width: 150px;">Thêm thể loại</button>
+            </a>
+        </div>
+        <div class="col-2">
+            <a href="#">
+                <button type="button" class="btn btn-success" style="width: 150px;">Sắp xếp</button>
+            </a>
+        </div>
+        <div class="col-2">
+            <a href="#">
+                <button type="button" class="btn btn-success" style="width: 150px;">Lọc</button>
+            </a>
+        </div>
+    </div>
+    <!-- bang danh sach -->
+    <div class="mt-4">
+        <table class="table table-striped" style="margin-top: 15px;">
+            <thead>
+                <tr>
+                    <th scope="col">Mã thể loại</th>
+                    <th scope="col">Tên thể loại</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>111</td>
+                    <td>SenDan</td>
+                </tr>
+                <tr>
+                    <td>111</td>
+                    <td>SenDan</td>
+                </tr>
+                <tr>
+                    <td>111</td>
+                    <td>SenDan</td>
+                </tr>
+                <tr>
+                    <td>111</td>
+                    <td>SenDan</td>
+                </tr>
+                <tr>
+                    <td>111</td>
+                    <td>SenDan</td>
+                </tr>
+                <tr>
+                    <td>111</td>
+                    <td>SenDan</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- danh muc -->
+    <div class="btn-toolbar justify-content-end mt-3" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group" role="group" aria-label="First group">
+            <button type="button" class="btn btn-outline-secondary">1</button>
+            <button type="button" class="btn btn-outline-secondary">2</button>
+            <button type="button" class="btn btn-outline-secondary">3</button>
+            <button type="button" class="btn btn-outline-secondary">4</button>
+            <button type="button" class="btn btn-outline-secondary">5</button>
+            <button type="button" class="btn btn-outline-secondary">6</button>
+        </div>
+    </div>
+   
 <%- include('../inc/bottom.ejs') %>

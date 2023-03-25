@@ -1,4 +1,4 @@
 exports.dangNhap = (req, res, next) =>{ 
-    
-    res.render('login/login', )
+    var tieude = 'Trang Đăng Nhập'; 
+    res.render('login/login', {title: tieude})
 }

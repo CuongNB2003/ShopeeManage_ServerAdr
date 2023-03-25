@@ -1,3 +1,54 @@
 <%- include('../inc/top.ejs') %>
-<h1> Đây là trang thêm bài viết</h1>
+
+    <!-- Thêm sản phẩm -->
+    <div class="card mt-4">
+        <div class="card-body mt-3">
+            <form>
+                <div class="row mb-4">
+                    <label class="col-sm-2 col-form-label">Tên sản phẩm</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <label for="input" class="col-sm-2 col-form-label">Thể loại</label>
+                    <div class="dropdown col-sm-10">
+                        <a class="btn col-sm-10 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Chọn thể loại
+                        </a>
+                      
+                        <ul class="dropdown-menu col-sm-10">
+                          <li><a class="dropdown-item" href="#">Action</a></li>
+                          <li><a class="dropdown-item" href="#">Another action</a></li>
+                          <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                      </div>
+                      
+                </div>
+                <div class="row mb-4">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Ảnh sản phẩm</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputPassword3">
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Giá Tiền</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputEmail3">
+                    </div>
+                </div>
+                <div class="row mb-5">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Mô tả sản phẩm</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputPassword3">
+                    </div>
+                </div>
+                
+                <div style="text-align: center;">
+                    <button type="submit" class="btn btn-primary mb-4" style="width: 200px;">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
 <%- include('../inc/bottom.ejs') %>

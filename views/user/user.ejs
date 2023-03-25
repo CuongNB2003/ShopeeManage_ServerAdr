@@ -1,3 +1,107 @@
 <%- include('../inc/top.ejs') %>
-<h1> Đây là trang user</h1>
-<%- include('../inc/bottom.ejs') %>
+
+    <!-- Thanh Dieu khien -->
+    <div style="text-align: center;" class="row mt-4">
+        <nav class="navbar col-6">
+            <div class="container-fluid">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                        style="width: 300px;">
+                    <button class="btn btn-outline-success" type="submit" style="width: 150px;">Tìm kiếm</button>
+                </form>
+            </div>
+        </nav>
+        <div class="col-2">
+            <a href="/user/add">
+                <button type="button" class="btn btn-success" style="width: 150px;">Thêm User</button>
+            </a>
+        </div>
+        <div class="col-2">
+            <a href="#">
+                <button type="button" class="btn btn-success" style="width: 150px;">Sắp xếp</button>
+            </a>
+        </div>
+        <div class="col-2">
+            <a href="#">
+                <button type="button" class="btn btn-success" style="width: 150px;">Lọc</button>
+            </a>
+        </div>
+    </div>
+    <!-- bang danh sach -->
+    <div class="mt-4">
+        <table class="table table-striped" style="margin-top: 15px;">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Fullname</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Group</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Nguyễn Bá Cường</td>
+                    <td>Cường</td>
+                    <td>cuongnb111@gmail.com</td>
+                    <td>Nhóm 1</td>
+                    <td>True</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Nguyễn Thị Trang</td>
+                    <td>Trang</td>
+                    <td>trangnt222@gmail.com</td>
+                    <td>Nhóm 2</td>
+                    <td>False</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Nguyễn Thị Thúy</td>
+                    <td>Thúy</td>
+                    <td>thuynt333@gmail.com</td>
+                    <td>Nhóm 1</td>
+                    <td>True</td>
+                </tr>
+                <tr>
+                    <th scope="row">4</th>
+                    <td>Nguyễn Bá Cường</td>
+                    <td>Cường</td>
+                    <td>cuongnb111@gmail.com</td>
+                    <td>Nhóm 1</td>
+                    <td>True</td>
+                </tr>
+                <tr>
+                    <th scope="row">5</th>
+                    <td>Nguyễn Thị Trang</td>
+                    <td>Trang</td>
+                    <td>trangnt222@gmail.com</td>
+                    <td>Nhóm 2</td>
+                    <td>False</td>
+                </tr>
+                <tr>
+                    <th scope="row">6</th>
+                    <td>Nguyễn Thị Thúy</td>
+                    <td>Thúy</td>
+                    <td>thuynt333@gmail.com</td>
+                    <td>Nhóm 1</td>
+                    <td>True</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- danh muc -->
+    <div class="btn-toolbar justify-content-end mt-3" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group" role="group" aria-label="First group">
+            <button type="button" class="btn btn-outline-secondary">1</button>
+            <button type="button" class="btn btn-outline-secondary">2</button>
+            <button type="button" class="btn btn-outline-secondary">3</button>
+            <button type="button" class="btn btn-outline-secondary">4</button>
+            <button type="button" class="btn btn-outline-secondary">5</button>
+            <button type="button" class="btn btn-outline-secondary">6</button>
+        </div>
+    </div>
+   
+    <%- include('../inc/bottom.ejs') %>

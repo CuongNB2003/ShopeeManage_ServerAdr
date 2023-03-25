@@ -1,4 +1,4 @@
 exports.listUser = (req, res, next) =>{ 
-    var tieuDe = 'Danh Sach User';
+    var tieuDe = 'Danh Sách User';
     res.render('user/user', {title: tieuDe})
 }
