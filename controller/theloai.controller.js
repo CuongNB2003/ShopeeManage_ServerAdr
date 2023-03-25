@@ -1,9 +1,9 @@
 exports.listTheLoai = (req, res, next) =>{ 
-
-    res.render('theloai/theloai', )
+    var tieuDe = 'Danh Sach The Loai';
+    res.render('theloai/theloai', {title: tieuDe})
 }
 
 exports.addTheLoai = (req, res, next) =>{ 
-
-    res.render('theloai/theloaiAdd', )
+    var tieuDe = 'Them The Loai';
+    res.render('theloai/theloaiAdd', {title: tieuDe})
 }

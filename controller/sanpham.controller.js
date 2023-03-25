@@ -1,9 +1,9 @@
 exports.listSanPham = (req, res, next) =>{ 
-
-    res.render('sanpham/sanpham', )
+    var tieuDe = 'Danh Sach San Pham';
+    res.render('sanpham/sanpham', {title: tieuDe})
 }
 
 exports.addSanPham = (req, res, next) =>{ 
-
-    res.render('sanpham/sanphamAdd', )
+    var tieuDe = 'Them San Pham';
+    res.render('sanpham/sanphamAdd', {title: tieuDe})
 }

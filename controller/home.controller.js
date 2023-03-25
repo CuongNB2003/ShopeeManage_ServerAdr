@@ -1,4 +1,4 @@
 exports.index = (req, res, next) =>{ 
-
-    res.render('home/index', )
+    var tieuDe = 'Trang Home';
+    res.render('home/index', {title: tieuDe})
 }
