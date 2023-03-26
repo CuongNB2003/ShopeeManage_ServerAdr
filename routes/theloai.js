@@ -6,4 +6,6 @@ router.get('/', theloaiCtrl.listTheLoai)
 
 router.get('/add', theloaiCtrl.addTheLoai)
 
+router.get('/edit', theloaiCtrl.editTheLoai)
+
 module.exports = router

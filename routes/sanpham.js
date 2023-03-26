@@ -6,4 +6,6 @@ router.get('/', sanphamCtrl.listSanPham)
 
 router.get('/add', sanphamCtrl.addSanPham)
 
+router.get('/edit', sanphamCtrl.editSanPham)
+
 module.exports = router;

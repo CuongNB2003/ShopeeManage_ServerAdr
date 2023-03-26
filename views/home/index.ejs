@@ -1,4 +1,5 @@
 <%- include('../inc/top.ejs') %>
+
     <div class="row mt-5">
         <!-- quản trị left -->
         <div class="col-md-12 col-lg-6 ">
@@ -38,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- col-6 -->
+                <!-- col-6
                 <div class="col-md-5 card m-3">
                     <div class="row card-body">
                         <img src="/images/users-alt.png" alt="" srcset="" width="60px" height="60px" class="col-4">
@@ -48,7 +49,7 @@
                             <p class="info-tong">Số sản phẩm cảnh báo hết cần nhập thêm.</p>
                         </div>
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
         <!-- quản trị right -->
@@ -62,16 +63,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-11 card m-3">
-                    <div class="tile card-body">
-                        <h3 class="tile-title">Thống kê 6 tháng doanh thu</h3>
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <canvas id="frame_canvas" width=500 height=300>
-                                Your browser does not support the HTML5 Canvas.
-                            </canvas>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
@@ -190,7 +182,7 @@
             },
         ];
 
-        var canvasElement = document.getElementById("frame_canvas");
+        var canvasElement = document.getElementById("canvas");
         var ctx = canvasElement.getContext("2d");
         var originPoint = new Point(150, 150);
         var pieChart = new PieChart(originPoint, 120, arrValue);
