@@ -8,7 +8,7 @@ var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
 var sanphamRouter = require('./routes/sanpham');
 var theloaiRouter = require('./routes/theloai');
-var loginRouter = require('./routes/login');
+
 
 var app = express();
 
@@ -22,7 +22,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/home', loginRouter);
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/theloai', theloaiRouter);
