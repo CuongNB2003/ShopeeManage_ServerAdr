@@ -1,47 +1,48 @@
 <%- include('../inc/top.ejs') %>
-    
     <div class="row mt-5">
         <!-- quản trị left -->
         <div class="col-md-12 col-lg-6 ">
             <div class="row">
                 <!-- col-6 -->
-                <div class="col-md-6 card p-3">
-                    <div class="card-body">
-                        <i class='icon bx bxs-user-account fa-3x'></i>
-                        <div class="info">
+                <div class="col-md-5 card m-3">
+                    <div class="row card-body">
+
+                        <img src="/images/users-alt.png" alt="" srcset="" width="60px" height="60px" class="col-4">
+                        <div class="col-8">
                             <h4>Tổng khách hàng</h4>
                             <p><b>56 khách hàng</b></p>
-                            <p class="info-tong">Tổng số khách hàng được quản lý.</p>
+                            <p class="">Tổng số khách hàng được quản lý.</p>
                         </div>
+
                     </div>
                 </div>
                 <!-- col-6 -->
-                <div class="col-md-6 card p-3">
-                    <div class="card-body">
-                        <i class='icon bx bxs-data fa-3x'></i>
-                        <div class="info">
+                <div class="col-md-5 card m-3">
+                    <div class=" row card-body">
+                        <img src="/images/users-alt.png" alt="" srcset="" width="60px" height="60px" class="col-4">
+                        <div class="col-8">
                             <h4>Tổng sản phẩm</h4>
-                            <p><b>1850 sản phẩm</b></p>
+                            <p><b>50 sản phẩm</b></p>
                             <p class="info-tong">Tổng số sản phẩm được quản lý.</p>
                         </div>
                     </div>
                 </div>
                 <!-- col-6 -->
-                <div class="col-md-6 card p-3">
-                    <div class="card-body">
-                        <i class='icon bx bxs-shopping-bags fa-3x'></i>
-                        <div class="info">
-                            <h4>Tổng đơn hàng</h4>
-                            <p><b>247 đơn hàng</b></p>
-                            <p class="info-tong">Tổng số hóa đơn bán hàng trong tháng.</p>
+                <div class="col-md-5 card m-3">
+                    <div class="row card-body">
+                        <img src="/images/users-alt.png" alt="" srcset="" width="60px" height="60px" class="col-4">
+                        <div class="col-8">
+                            <h4>Tổng thể loại</h4>
+                            <p><b>10 thể loại</b></p>
+                            <p class="info-tong">Tổng số thể loại sản phẩm. </p>
                         </div>
                     </div>
                 </div>
                 <!-- col-6 -->
-                <div class="col-md-6 card p-3">
-                    <div class="card-body">
-                        <i class='icon bx bxs-error-alt fa-3x'></i>
-                        <div class="info">
+                <div class="col-md-5 card m-3">
+                    <div class="row card-body">
+                        <img src="/images/users-alt.png" alt="" srcset="" width="60px" height="60px" class="col-4">
+                        <div class="col-8">
                             <h4>Sắp hết hàng</h4>
                             <p><b>4 sản phẩm</b></p>
                             <p class="info-tong">Số sản phẩm cảnh báo hết cần nhập thêm.</p>
@@ -50,28 +51,150 @@
                 </div>
             </div>
         </div>
-        <!-- bảng -->
         <!-- quản trị right -->
         <div class="col-md-12 col-lg-6">
-            <div class="row m-3">
-                <div class="col-md-12 card ">
+            <div class="row ">
+                <div class="col-md-11 card m-3">
                     <div class="tile card-body">
                         <h3 class="tile-title">Dữ liệu 6 tháng đầu vào</h3>
                         <div class="embed-responsive embed-responsive-16by9">
-                            <canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
+                            <canvas id="canvas" height="300" width="400"></canvas>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12 card ">
+                <div class="col-md-11 card m-3">
                     <div class="tile card-body">
                         <h3 class="tile-title">Thống kê 6 tháng doanh thu</h3>
                         <div class="embed-responsive embed-responsive-16by9">
-                            <canvas class="embed-responsive-item" id="barChartDemo"></canvas>
+                            <canvas id="frame_canvas" width=500 height=300>
+                                Your browser does not support the HTML5 Canvas.
+                            </canvas>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>  
-    
+    </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.min.js"></script>
+    <script type="text/javascript" src="/javascripts/charMap.js"></script>
+
+    <script>
+        // Phương thức Point
+        function Point(x, y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        // Phương thức Pie chart
+        function PieChart(origin, radius, arrChart) {
+            // toạ độ tâm
+            this.origin = origin;
+            // bán kính
+            this.radius = radius;
+            // tổng giá trị đưa vào sẽ được gán ở Constructor
+            this.sumValue = 0;
+            // Mãng giá trị đưa vào
+            this.arrChart = arrChart;
+            // toạ độ bắt đầu vẽ label
+            this.xPosLabel;
+            this.yPosLabel;
+            // cạnh label
+            this.edge = 10;
+
+            // Hàm khởi tạo của phương thức
+            this.Constructor = function () {
+                var length = this.arrChart.length;
+
+                // Tính tổng giá trị
+                for (var i = 0; i < length; i++) {
+                    this.sumValue += this.arrChart[i].value;
+                }
+
+                for (var i = 0; i < length; i++) {
+                    // Tính phần trăm của mỗi giá trị dựa trên tổng
+                    this.arrChart[i].percent = this.arrChart[i].value / this.sumValue * 100;
+                    // Đổi phần trăm sang độ(degree)
+                    this.arrChart[i].degree = 360 * this.arrChart[i].percent / 100;
+                    // Đổi độ sang radian
+                    this.arrChart[i].radian = this.arrChart[i].degree * Math.PI / 180;
+                }
+
+                // toạ độ vẽ label cánh hình tròn 20 px
+                this.xPosLabel = this.origin.x + this.radius + 20;
+                this.yPosLabel = this.origin.y - this.radius + 20;
+            };
+            this.Constructor();
+
+            this.draw = function (context) {
+                var length = this.arrChart.length;
+                var beginAngle = 0;
+                // bắt đầu vẽ hình tròn ở góc 12 giờ (nếu 0 thì sẽ vẽ ở 3h)
+                var endAngle = Math.PI * 1.5;
+                var offsetX, offsetY, medianAngle;
+
+                for (var i = 0; i < length; i++) {
+                    beginAngle = endAngle;
+                    endAngle = endAngle + this.arrChart[i].radian;
+
+                    // bắt đầu vẽ đối tượng pie chart
+                    context.beginPath();
+                    // Lùi về tâm điểm sau mỗi lần vẽ
+                    context.moveTo(this.origin.x, this.origin.y);
+                    // Vẽ hình tròn thành nhiều miếng khác nhau
+                    context.arc(this.origin.x, this.origin.y, this.radius, beginAngle, endAngle);
+                    context.fillStyle = this.arrChart[i].color;
+                    context.fill();
+                    // Vẽ label
+                    context.beginPath();
+                    context.rect(this.xPosLabel + 10, this.yPosLabel + (i * 20), this.edge, this.edge);
+                    context.fillStyle = this.arrChart[i].color;
+                    context.font = '12px Arial';
+                    var textLabel = this.arrChart[i].title + ' : ' + this.arrChart[i].value;
+                    context.fillText(textLabel, this.xPosLabel + 25, this.yPosLabel + (i * 20) + 8);
+                    context.fill();
+                }
+
+                context.beginPath();
+                context.fillStyle = "black"
+                context.fillText('Sum: ' + this.sumValue, this.xPosLabel + 25, this.yPosLabel + (length * 20) + 8);
+                context.fill();
+            }
+        }
+
+        var arrValue = [
+            {
+                title: 'Jan',
+                value: 12,
+                color: '#1F77B6'
+            },
+            {
+                title: "Feb",
+                value: 28,
+                color: '#AEC6E8'
+            },
+            {
+                title: "Mar",
+                value: 18,
+                color: '#F8BB01'
+            },
+            {
+                title: "Apr",
+                value: 34,
+                color: '#1B602B'
+            },
+            {
+                title: "May",
+                value: 40,
+                color: '#CD76B1'
+            },
+        ];
+
+        var canvasElement = document.getElementById("frame_canvas");
+        var ctx = canvasElement.getContext("2d");
+        var originPoint = new Point(150, 150);
+        var pieChart = new PieChart(originPoint, 120, arrValue);
+        pieChart.draw(ctx);
+
+    </script>
     <%- include('../inc/bottom.ejs') %>

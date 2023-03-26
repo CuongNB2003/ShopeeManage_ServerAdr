@@ -22,8 +22,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', loginRouter);
-app.use('/home', indexRouter);
+app.use('/home', loginRouter);
+app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/theloai', theloaiRouter);
 app.use('/sanpham', sanphamRouter);
