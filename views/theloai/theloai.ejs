@@ -5,7 +5,7 @@
         <nav class="navbar col-6">
             <div class="container-fluid">
                 <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                    <input class="form-control me-2 border border-success" type="search" placeholder="Search" aria-label="Search"
                         style="width: 300px;">
                     <button class="btn btn-outline-success" type="submit" style="width: 150px;">Tìm kiếm</button>
                 </form>
@@ -13,18 +13,24 @@
         </nav>
         <div class="col-2">
             <a href="/theloai/add">
-                <button type="button" class="btn btn-success" style="width: 150px;">Thêm thể loại</button>
+                <button type="button" class="btn btn-outline-success" style="width: 150px;">Thêm thể loại</button>
             </a>
         </div>
         <div class="col-2">
-            <a href="#">
-                <button type="button" class="btn btn-success" style="width: 150px;">Sắp xếp</button>
-            </a>
+            <select class="form-select btn btn-outline-success" aria-label="Default select example" style="width: 150px;">
+                <option selected>Sắp xếp</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
         </div>
         <div class="col-2">
-            <a href="#">
-                <button type="button" class="btn btn-success" style="width: 150px;">Lọc</button>
-            </a>
+            <select class="form-select btn btn-outline-success" aria-label="Default select example" style="width: 150px;">
+                <option selected>Lọc</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
         </div>
     </div>
     <!-- bang danh sach -->
@@ -47,41 +53,7 @@
                     <td><a href="/theloai/edit"><img src="/images/edit.png" alt="" srcset="" width="50px" height="50px"></a></td>
                     <td><img src="/images/delete.png" alt="" srcset="" width="50px" height="50px"></td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>111</td>
-                    <td>SenDan</td>
-                    <td><a href="/theloai/edit"><img src="/images/edit.png" alt="" srcset="" width="50px" height="50px"></a></td>
-                    <td><img src="/images/delete.png" alt="" srcset="" width="50px" height="50px"></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>111</td>
-                    <td>SenDan</td>
-                    <td><a href="/theloai/edit"><img src="/images/edit.png" alt="" srcset="" width="50px" height="50px"></a></td>
-                    <td><img src="/images/delete.png" alt="" srcset="" width="50px" height="50px"></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>111</td>
-                    <td>SenDan</td>
-                    <td><a href="/theloai/edit"><img src="/images/edit.png" alt="" srcset="" width="50px" height="50px"></a></td>
-                    <td><img src="/images/delete.png" alt="" srcset="" width="50px" height="50px"></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>111</td>
-                    <td>SenDan</td>
-                    <td><a href="/theloai/edit"><img src="/images/edit.png" alt="" srcset="" width="50px" height="50px"></a></td>
-                    <td><img src="/images/delete.png" alt="" srcset="" width="50px" height="50px"></td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>111</td>
-                    <td>SenDan</td>
-                    <td><a href="/theloai/edit"><img src="/images/edit.png" alt="" srcset="" width="50px" height="50px"></a></td>
-                    <td><img src="/images/delete.png" alt="" srcset="" width="50px" height="50px"></td>
-                </tr>
+                
             </tbody>
         </table>
     </div>
