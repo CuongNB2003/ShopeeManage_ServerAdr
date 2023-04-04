@@ -5,7 +5,12 @@ var sanphamCtrl = require('../controller/sanpham.controller');
 router.get('/', sanphamCtrl.listSanPham)
 
 router.get('/add', sanphamCtrl.addSanPham)
+router.post('/add', sanphamCtrl.addSanPham)
 
-router.get('/edit', sanphamCtrl.editSanPham)
+router.get('/edit/:idsp', sanphamCtrl.editSanPham)
+router.post('/edit/:idsp', sanphamCtrl.editSanPham)
+
+router.get('/chitiet/:idsp', sanphamCtrl.chitietSanPham)
+
 
 module.exports = router;

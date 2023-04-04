@@ -5,7 +5,11 @@ var theloaiCtrl = require('../controller/theloai.controller');
 router.get('/', theloaiCtrl.listTheLoai)
 
 router.get('/add', theloaiCtrl.addTheLoai)
+router.post('/add', theloaiCtrl.addTheLoai)
 
-router.get('/edit', theloaiCtrl.editTheLoai)
+
+router.get('/edit/:idtl', theloaiCtrl.editTheLoai)
+router.post('/edit/:idtl', theloaiCtrl.editTheLoai)
+
 
 module.exports = router

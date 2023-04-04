@@ -1,12 +1,12 @@
 <%- include('../inc/top.ejs') %>
-     
+
     <!-- Thanh Dieu khien -->
     <div class="row mt-4    ">
         <nav class="navbar col-6">
             <div class="container-fluid">
                 <form class="d-flex" role="search">
-                    <input class="form-control me-2 border border-primary" type="search" placeholder="Search" aria-label="Search"
-                        style="width: 300px;">
+                    <input class="form-control me-2 border border-primary" type="search" placeholder="Search"
+                        aria-label="Search" style="width: 300px;">
                     <button class="btn btn-outline-primary" type="submit" style="width: 150px;">Tìm kiếm</button>
                 </form>
             </div>
@@ -17,51 +17,49 @@
             </a>
         </div>
         <div class="col-2">
-            <select class="form-select btn btn-outline-primary" aria-label="Default select example" style="width: 150px;">
+            <select class="form-select btn btn-outline-primary" aria-label="Default select example"
+                style="width: 150px;">
                 <option selected>Sắp xếp</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>
-              </select>
+            </select>
         </div>
         <div class="col-2">
-            <select class="form-select btn btn-outline-primary" aria-label="Default select example" style="width: 150px;">
+            <select name="theloai" class="form-select btn btn-outline-primary" aria-label="Default select example"
+                style="width: 150px;">
                 <option selected>Lọc</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
+                <% listTL.forEach( (row) => { %>
+                    <option value="<%= row._id %>"><%= row.name %></option>
+                <% }); %>
+            </select>
         </div>
     </div>
     <!-- bang danh sach -->
     <div class="mt-4">
-        <table class="table table-striped" style="margin-top: 15px;">
-            <thead>
+        <table class="table table-bordered table-striped" style="margin-top: 15px;">
+            <tr>
+                <th>STT</th>
+                <th>Ảnh</th>
+                <th>Tên sản phẩm</th>
+                <th>Thể loại</th>
+                <th>Giá </th>
+                <th>Mô tả</th>
+                <th>Sửa</th>
+                <th>Xóa</th>
+            </tr>
+            <% listSP.forEach( (row, index) => { %>
                 <tr>
-                    <th scope="col">STT</th>
-                    <th scope="col">Ảnh</th>
-                    <th scope="col">Tên sản phẩm</th>
-                    <th scope="col">Thể loại</th>
-                    <th scope="col">Giá </th>
-                    <th scope="col">Mô tả</th>
-                    <th scope="col">Sửa</th>
-                    <th scope="col">Xóa</th>
+                    <td><%= index + 1%></td>
+                    <td><img src="<%= row.image  %>" alt="" srcset="" width="100px" height="100px"></td>
+                    <td><a href="/sanpham/chitiet/<%= row._id %>" style="text-decoration-line: none; color: black;"><%= row.name %></a></td>
+                    <td><%= row.id_theloai.name %></td>
+                    <td><%= row.price %></td>
+                    <td><%= row.desc %></td>
+                    <td><a href="/sanpham/edit/<%= row._id %>"><img src="/images/edit.png" alt="" srcset="" width="50px" height="50px"></a></td>
+                    <td><a href="/sanpham/edit"><img src="/images/delete.png" alt="" srcset="" width="50px" height="50px"></a></td>
                 </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJOaHr6WeIbOJnmTqu-58DZj_DZqyWL3SZRw&usqp=CAU"
-                        alt="" srcset="" width="100px" height="50px"></td>
-                    <td>BMW i8</td>
-                    <td>SeDan</td>
-                    <td>7.000.000.000 VNĐ</td>
-                    <td>Đây là oto thể thao</td>
-                    <td><a href="/sanpham/edit"><img src="/images/edit.png" alt="" srcset="" width="50px" height="50px"></a></td>
-                    <td><img src="/images/delete.png" alt="" srcset="" width="50px" height="50px"></td>
-                </tr>
-                
-            </tbody>
+            <% }); %>
         </table>
     </div>
     <!-- danh muc -->

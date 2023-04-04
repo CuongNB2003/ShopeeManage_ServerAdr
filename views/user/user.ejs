@@ -34,26 +34,30 @@
     </div>
     <!-- bang danh sach -->
     <div class="mt-4">
-        <table class="table table-striped" style="margin-top: 15px;">
-            <thead>
+        <table class="table table-bordered table-striped" style="margin-top: 15px;">
                 <tr>
-                    <th scope="col">STT</th>
-                    <th scope="col">Avata</th>
-                    <th scope="col">Tên đăng nhập</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Vai trò</th>
+                    <th>STT</th>
+                    <th>Avata</th>
+                    <th>Họ và Tên</th>
+                    <th>Tên đăng nhập</th>
+                    <th>Email</th>
+                    <th>Vai trò</th>
+                    
                 </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td><img src="" alt="" srcset="" width="60px" height="80px"></td>
-                    <td>admin</td>
-                    <td>admin123@gmail.com</td>
-                    <td>admin</td>
-                </tr>
-
-            </tbody>
+                <% listUser.forEach( (row, index) => { %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+                        <td><img src="<%= row.avata %>" alt="" srcset="" width="60px" height="80px"></td>
+                        <td><%= row.fullname %></td>
+                        <td><%= row.username %></td>
+                        <td><%= row.email %></td>
+                        <% if((row.role) == true){ %>
+                            <td><%= "admin"  %></td>
+                        <% }else{ %>
+                            <td><%= "user"  %></td>
+                        <% } %>
+                    </tr>
+                <% }); %>
         </table>
     </div>
     <!-- danh muc -->

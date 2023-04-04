@@ -1,11 +1,13 @@
 <%- include('../inc/top.ejs') %>
 
     <!-- Thêm thể loại -->
-    <div class="card border border-success ">
+    <div class="text-center"><h3><%= msg %></h3></div>
+    <div class="card border border-success">
         <div class="card-body mt-4">
-            <form>
+            <form action="" method="post">
                 <div class="form-floating mt-3 border border-success rounded-2">
-                    <input type="text" class="form-control" id="floatingPassword" placeholder="Nhập tên thể loại">
+                    <input name="name" type="text" class="form-control" id="floatingPassword" 
+                    placeholder="Nhập tên thể loại" value="<%= objTL.name %>">
                     <label for="floatingPassword">Tên thể loại</label>
                 </div>
                 <div class="text-center mt-4">
