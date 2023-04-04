@@ -11,5 +11,7 @@ router.post('/add', theloaiCtrl.addTheLoai)
 router.get('/edit/:idtl', theloaiCtrl.editTheLoai)
 router.post('/edit/:idtl', theloaiCtrl.editTheLoai)
 
+router.get('/delete/:idtl', theloaiCtrl.deleteTheLoai)
+
 
 module.exports = router

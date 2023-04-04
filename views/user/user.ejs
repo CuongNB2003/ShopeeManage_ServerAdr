@@ -2,7 +2,7 @@
 
     <!-- Thanh Dieu khien -->
     <div style="text-align: center;" class="row mt-4">
-        <nav class="navbar col-6">
+        <nav class="navbar col-auto">
             <div class="container-fluid">
                 <form class="d-flex" role="search">
                     <input class="form-control me-2 border border-info" type="search" placeholder="Search" aria-label="Search"
@@ -11,21 +11,21 @@
                 </form>
             </div>
         </nav>
-        <div class="col-2">
-            <a href="/user/block">
-                <button type="button" class="btn btn-outline-info" style="width: 150px;">Danh sách chặn</button>
+        <div class="col-auto mt-2">
+            <a href="/user/add">
+                <button type="button" class="btn btn-outline-info" style="width: 150px;">Thêm nhân viên</button>
             </a>
         </div>
-        <div class="col-2">
-            <select class="form-select btn btn-outline-info" aria-label="Default select example" style="width: 150px;">
+        <div class="col-auto mt-2">
+            <select class="form-select border border-info" aria-label="Default select example" style="width: 150px;" >
                 <option selected>Sắp xếp</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>
             </select>
         </div>
-        <div class="col-2">
-            <select class="form-select btn btn-outline-info" aria-label="Default select example" style="width: 150px;">
+        <div class="col-auto mt-2">
+            <select class="form-select border border-info" aria-label="Default select example" style="width: 150px;" >
                 <option selected>Lọc</option>
                 <option value="1">One</option>
 
@@ -34,7 +34,7 @@
     </div>
     <!-- bang danh sach -->
     <div class="mt-4">
-        <table class="table table-bordered table-striped" style="margin-top: 15px;">
+        <table class="table table-bordered table-striped border border-info" style="margin-top: 15px;">
                 <tr>
                     <th>STT</th>
                     <th>Avata</th>
@@ -42,7 +42,8 @@
                     <th>Tên đăng nhập</th>
                     <th>Email</th>
                     <th>Vai trò</th>
-                    
+                    <th>Sửa</th>
+                    <th>Xóa</th>
                 </tr>
                 <% listUser.forEach( (row, index) => { %>
                     <tr>
@@ -56,7 +57,33 @@
                         <% }else{ %>
                             <td><%= "user"  %></td>
                         <% } %>
+                        <td><a href="/user/edit/<%= row._id %>"><img src="/images/edit.png" alt="" srcset="" width="50px" height="50px"></a></td>
+                        <td>
+                            <img src="/images/delete.png" alt="" srcset="" width="50px" height="50px" 
+                                data-bs-toggle="modal" data-bs-target="#xoa<%= row._id %>">
+                         </td>
                     </tr>
+                    <!-- Modal -->
+                    <div class="modal fade" id="xoa<%= row._id %>" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa User</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Bạn có chắc chắn xóa hay không ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Hủy</button>
+                                    <a href="/user/delete/<%= row._id %>" class="btn btn-primary">Xóa</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 <% }); %>
         </table>
     </div>

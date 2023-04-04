@@ -10,6 +10,8 @@ router.post('/add', sanphamCtrl.addSanPham)
 router.get('/edit/:idsp', sanphamCtrl.editSanPham)
 router.post('/edit/:idsp', sanphamCtrl.editSanPham)
 
+router.get('/delete/:idsp', sanphamCtrl.deleteSanPham)
+
 router.get('/chitiet/:idsp', sanphamCtrl.chitietSanPham)
 
 
