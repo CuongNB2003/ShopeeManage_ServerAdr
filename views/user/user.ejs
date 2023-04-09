@@ -1,14 +1,24 @@
 <%- include('../inc/top.ejs') %>
-
+    <script>
+        function layRole() {
+            role = document.getElementById("locRole").value;
+            window.location = '/user/filter/'+role;
+        }
+        function sapXepTheoTen() {
+            name = document.getElementById("sapXepTen").value;
+            window.location = '/user/sort/'+name;
+        }
+    </script>
     <!-- Thanh Dieu khien -->
+    <div class="text-center"><h3><%= msg %></h3></div>
     <div style="text-align: center;" class="row mt-4">
         <nav class="navbar col-auto">
             <div class="container-fluid">
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2 border border-info" type="search" placeholder="Search" aria-label="Search"
-                        style="width: 300px;">
+                <form class="d-flex" role="search" action="/user/search" method="GET">
+                    <input class="form-control me-2 border border-info" type="search" placeholder="Search username" 
+                    aria-label="Search" style="width: 300px;" name="username" value="<%= username %>">
                     <button class="btn btn-outline-info" type="submit" style="width: 150px;">Tìm kiếm</button>
-                </form>
+                </form> 
             </div>
         </nav>
         <div class="col-auto mt-2">
@@ -17,18 +27,32 @@
             </a>
         </div>
         <div class="col-auto mt-2">
-            <select class="form-select border border-info" aria-label="Default select example" style="width: 150px;" >
-                <option selected>Sắp xếp</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+            <select id="sapXepTen" onchange="sapXepTheoTen()" class="form-select border border-info" style="width: 150px;" >
+                <% let noneF='' ; let S1F='' ; let S2F='' ; 
+                if(typeSort=='1' ){ 
+                    S1F=' selected ' ; 
+                }else if(typeSort=='-1'){ 
+                    S2F=' selected ' ; 
+                }else{ noneF=' selected ' ; 
+                } %>
+                    <option <%=noneF %> value="0">Sắp xếp tên</option>
+                    <option <%=S1F %> value="1">A đến Z</option>
+                    <option <%=S2F %> value="-1">Z đến A</option>
             </select>
         </div>
         <div class="col-auto mt-2">
-            <select class="form-select border border-info" aria-label="Default select example" style="width: 150px;" >
-                <option selected>Lọc</option>
-                <option value="1">One</option>
-
+            <select id="locRole" onchange="layRole()" class="form-select border border-info" style="width: 150px;" >
+                <% let noneS='' ; let S1='' ; let S2='' ; 
+                if(typeFilter=='false' ){ 
+                    S1=' selected ' ; 
+                }else if(typeFilter=='true'){ 
+                    S2=' selected ' ; 
+                }else{ 
+                    noneS=' selected ' ; 
+                } %>
+                    <option <%=noneS %> value="0">All</option>
+                    <option <%=S1 %> value="false">User</option>
+                    <option <%=S2 %> value="true">NhanVien</option>
             </select>
         </div>
     </div>
@@ -61,7 +85,7 @@
                         <td>
                             <img src="/images/delete.png" alt="" srcset="" width="50px" height="50px" 
                                 data-bs-toggle="modal" data-bs-target="#xoa<%= row._id %>">
-                         </td>
+                        </td>
                     </tr>
                     <!-- Modal -->
                     <div class="modal fade" id="xoa<%= row._id %>" tabindex="-1" aria-labelledby="exampleModalLabel"

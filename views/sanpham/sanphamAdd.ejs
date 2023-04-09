@@ -4,7 +4,13 @@
     <div class="text-center"><h3><%= msg %></h3></div>
     <div class="card mt-4 border border-primary">
         <div class="card-body mt-3 p-5 ">
-            <form method="post">
+            <form method="POST" enctype="multipart/form-data">
+
+                <div class="input-group mb-3 border border-primary rounded-2">
+                    <input name="image" type="file" class="form-control">
+                    <button type="submit" class="btn btn-outline-info">Upload</button>
+                </div>
+
                 <select name="theloai" class="form-select mt-3 border border-primary rounded-2" aria-label="Default select example">
                     <option selected>Chọn thể loại</option>
                     <% listTL.forEach( (row) => { %>
@@ -12,23 +18,18 @@
                     <% }); %>
                     
                 </select>
-                <div class="form-floating mt-3">
-                    <input name="name" type="text" class="form-control border border-primary rounded-2" id="floatingPassword"
+                <div class="form-floating mt-3 border border-primary rounded-2">
+                    <input name="name" type="text" class="form-control " id="floatingPassword"
                         placeholder="Nhập tên sản phẩm">
                     <label for="floatingPassword">Tên sản phẩm</label>
                 </div>
-                <div class="form-floating mt-3">
-                    <input name="image" type="text" class="form-control border border-primary rounded-2" id="floatingPassword"
-                        placeholder="Nhập ảnh sản phẩm">
-                    <label for="floatingPassword">Ảnh sản phẩm</label>
-                </div>
-                <div class="form-floating mt-3">
-                    <input name="price" type="number" class="form-control border border-primary rounded-2" id="floatingPassword"
+                <div class="form-floating mt-3 border border-primary rounded-2">
+                    <input name="price" type="number" class="form-control " id="floatingPassword"
                         placeholder="Nhập giá sản phẩm">
                     <label for="floatingPassword">Giá sản phẩm</label>
                 </div>
-                <div class="form-floating mt-3">
-                    <textarea name="desc" class="form-control border border-primary rounded-2" placeholder="Nhập mô tả sản phẩm"
+                <div class="form-floating mt-3 border border-primary rounded-2">
+                    <textarea name="desc" class="form-control" placeholder="Nhập mô tả sản phẩm"
                         id="floatingTextarea2" style="height: 100px"></textarea>
                     <label for="floatingTextarea2">Mô tả sản phẩm</label>
                 </div>

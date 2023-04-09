@@ -1,38 +1,58 @@
 var myDB = require('../models/db.model')
+var fs = require('fs')
 
 exports.listSanPham = async (req, res, next) =>{ 
     let tieuDe = 'Danh Sách Sản Phẩm';
     let msg = '';
     let dieuKienLoc = null;
-    let theloai = req.body.theloai;
-    console.log('thể loại là '+theloai);
-    if( typeof(req.query.theloai) != 'undefined'){
-        // dieuKienLoc = { price: req.query.price }
-        // dieuKienLoc = { price: {$gte: req.query.price} }
-        dieuKienLoc = {id_theloai: req.query.theloai}
+    let dieuKienSapXep = null;
+    //tìm kiếm
+    if(req.query.name != '' && String(req.query.name) != 'undefined'){
+        dieuKienLoc = {name: {$regex :req.query.name}}
     }
+    // chức năng lọc
+    if( req.params.idtl != '0'){
+        if(typeof(req.params.idtl) != 'undefined' ){
+            dieuKienLoc = {id_theloai: String(req.params.idtl)}
+            console.log("đã lọc: "+req.params.idtl);
+        }
+    }
+    // chức năng sắp xếp
+    if( req.params.price != '0'){
+        if(typeof(req.params.price) != 'undefined' ){
+            dieuKienSapXep = {price: Number(req.params.price)}
+            console.log("đã sắp xếp: "+req.params.price);
+        }
 
+    }
+    console.log("chưa sắp xếp: "+req.params.price);
     
-    console.log("dk loc "+ dieuKienLoc);
+    let listSP = await myDB.sanPhamModel.find(dieuKienLoc).sort(dieuKienSapXep).populate('id_theloai')
     let listTL = await myDB.theLoaiModel.find()
-    let listSP = await myDB.sanPhamModel.find(dieuKienLoc).populate('id_theloai')
-    
-    res.render('sanpham/sanpham', {title: tieuDe, msg: msg, listSP: listSP, listTL: listTL})
+    res.render('sanpham/sanpham', {title: tieuDe, msg: msg, listSP: listSP, listTL: listTL, idTheLoai: req.params.idtl,  name: req.query.name, typeSort: req.params.price})
 }
 
 exports.addSanPham = async (req, res, next) =>{ 
     let tieuDe = 'Thêm Sản Phẩm';
     let msg = '';
+    let url_file = ''
     let listTL = await myDB.theLoaiModel.find()
 
     if(req.method == "POST"){
+        try {
+            fs.renameSync(req.file.path, './public/upload/'+req.file.originalname);
+            // dùng url file để ghi vào csdl
+             url_file = '/upload/'+req.file.originalname
+        } catch (error) {
+            msg = error.message
+        }
+
         let objSP = new myDB.sanPhamModel();
         objSP.name = req.body.name;
         objSP.price = req.body.price;
         objSP.desc = req.body.desc;
-        objSP.image = req.body.image;
+        objSP.image = url_file
         objSP.id_theloai = req.body.theloai;
-        console.log(req.body.theloai);
 
         try {
             let new_SP = await objSP.save();
@@ -49,16 +69,25 @@ exports.addSanPham = async (req, res, next) =>{
 exports.editSanPham = async (req, res, next) =>{ 
     let tieuDe = 'Sửa Sản Phẩm';
     let msg = '';
+    let url_file = ''
     let idSP = req.params.idsp;
     let listTL = await myDB.theLoaiModel.find()
     let objSP = await myDB.sanPhamModel.findById(idSP);
 
     if(req.method == "POST"){
+        try {
+            fs.renameSync(req.file.path, './public/upload/'+req.file.originalname);
+            // dùng url file để ghi vào csdl
+             url_file = '/upload/'+req.file.originalname
+        } catch (error) {
+            msg = error.message
+        }
+
         let objSP = new myDB.sanPhamModel();
         objSP.name = req.body.name;
         objSP.price = req.body.price;
         objSP.desc = req.body.desc;
-        objSP.image = req.body.image;
+        objSP.image = url_file
         objSP.id_theloai = req.body.theloai;
 
         objSP._id = idSP;
