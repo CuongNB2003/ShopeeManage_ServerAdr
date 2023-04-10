@@ -7,8 +7,8 @@ exports.listUser = async (req, res, next) => {
     let dieuKienLoc = null;
     let dieuKienSapXep = null;
     // chức năng tìm kiếm
-    if (req.query.username != '' && String(req.query.username) != 'undefined') {
-        dieuKienLoc = { username: { $regex: req.query.username } }
+    if (req.query.fullname != '' && String(req.query.fullname) != 'undefined') {
+        dieuKienLoc = { fullname: { $regex: req.query.fullname } }
     }
     // chức năng lọc
     if (req.params.role != '0') {
@@ -18,18 +18,18 @@ exports.listUser = async (req, res, next) => {
         }
     }
     // chức năng sắp xếp
-    if (req.params.fullname != '0') {
-        if (typeof (req.params.fullname) != 'undefined') {
-            dieuKienSapXep = { fullname: Number(req.params.fullname) }
-            console.log("đã sắp xếp: " + req.params.fullname);
+    if (req.params.username != '0') {
+        if (typeof (req.params.username) != 'undefined') {
+            dieuKienSapXep = { username: Number(req.params.username) }
+            console.log("đã sắp xếp: " + req.params.username);
         }
     }
 
     let listUser = await myDB.userModel.find(dieuKienLoc).sort(dieuKienSapXep)
 
     res.render('user/user', {
-        title: tieuDe, listUser: listUser, msg: msg, luuRole: req.params.role, username: req.query.username,
-        typeFilter: req.params.role, typeSort: req.params.fullname
+        title: tieuDe, listUser: listUser, msg: msg, luuRole: req.params.role, fullname: req.query.fullname,
+        typeFilter: req.params.role, typeSort: req.params.username
     })
 }
 

@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
 var sanphamRouter = require('./routes/sanpham');
 var theloaiRouter = require('./routes/theloai');
+var ApiRouter = require('./routes/api');
 
 
 var app = express();
@@ -33,6 +34,7 @@ app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/category', theloaiRouter);
 app.use('/product', sanphamRouter);
+app.use('/api', ApiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -47,7 +49,17 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+
+  // địa chỉ truy cập bằng api: /api/xxxx
+  if(req.originalUrl.indexOf('/api') == 0){
+    res.json(
+      {
+        msg: err.message
+      }
+    );
+  }else{
+    res.render('error');
+  }
 });
 
 module.exports = app;

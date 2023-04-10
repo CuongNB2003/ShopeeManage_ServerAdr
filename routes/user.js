@@ -7,7 +7,7 @@ var checkLogin = require('../middleware/check_login');
 
 router.get('/', checkLogin.yeuCauDangNhap, userCtrl.listUser)
 router.get('/filter/:role', checkLogin.yeuCauDangNhap, userCtrl.listUser)
-router.get('/sort/:fullname', checkLogin.yeuCauDangNhap, userCtrl.listUser)
+router.get('/sort/:username', checkLogin.yeuCauDangNhap, userCtrl.listUser)
 router.get('/search', checkLogin.yeuCauDangNhap, userCtrl.listUser)
 
 router.get('/add', checkLogin.yeuCauDangNhap, userCtrl.addUser)
