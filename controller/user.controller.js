@@ -25,7 +25,7 @@ exports.listUser = async (req, res, next) => {
         }
     }
 
-    let listUser = await myDB.userModel.find(dieuKienLoc).sort(dieuKienSapXep)
+    let listUser = await myDB.userModel.find(dieuKienLoc).sort(dieuKienSapXep).limit(4);
 
     res.render('user/user', {
         title: tieuDe, listUser: listUser, msg: msg, luuRole: req.params.role, fullname: req.query.fullname,
