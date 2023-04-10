@@ -57,7 +57,7 @@ exports.addSanPham = async (req, res, next) =>{
         try {
             let new_SP = await objSP.save();
             msg = "Thêm sản phẩm thành công"
-            res.redirect('/sanpham/')
+            res.redirect('/product/')
         } catch (error) {
             msg = "Lỗi ghi cơ sở dữ liệu"+ error.message;
         }
@@ -95,7 +95,7 @@ exports.editSanPham = async (req, res, next) =>{
         try {
             await myDB.sanPhamModel.findByIdAndUpdate(idSP, objSP);
             msg = "Sửa sản phẩm thành công"
-            res.redirect('/sanpham/')
+            res.redirect('/product/')
         } catch (error) {
             msg = "Lỗi ghi cơ sở dữ liệu"+ error.message;
         }
@@ -115,7 +115,7 @@ exports.deleteSanPham = async (req, res, next) =>{
     try {
         await myDB.sanPhamModel.findByIdAndDelete(idSP, objSP)
         msg = "Xóa thể loại thành công"
-        res.redirect('/sanpham/')
+        res.redirect('/product/')
     } catch (error) {
         msg = "Lỗi ghi cơ sở dữ liệu" + error.message;
     }
@@ -126,7 +126,7 @@ exports.chitietSanPham = async (req, res, next) =>{
     let tieuDe = 'Chi tiết sản phẩm';
     let msg = '';
     let idSP = req.params.idsp;
-    let objSP = await myDB.sanPhamModel.findById(idSP);
+    let objSP = await myDB.sanPhamModel.findById(idSP).populate('id_theloai');
 
     res.render('sanpham/sanphamChiTiet', {title: tieuDe, objSP: objSP, msg: msg})
 }

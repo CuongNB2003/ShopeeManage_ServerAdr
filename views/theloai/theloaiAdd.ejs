@@ -1,19 +1,26 @@
 <%- include('../inc/top.ejs') %>
 
     <!-- Thêm thể loại -->
-    <div class="text-center"><h3><%= msg %></h3></div>
-    <div class="card border border-success">
-        <div class="card-body mt-4">
-            <form action="" method="post">
-                <div class="form-floating mt-3 border border-success rounded-2">
-                    <input name="name" type="text" class="form-control" id="floatingPassword" placeholder="Nhập tên thể loại">
-                    <label for="floatingPassword">Tên thể loại</label>
-                </div>
-                <div class="mt-4 text-center">
-                    <button type="submit" class="btn btn-outline-success" style="width: 200px; height: 48px; font-size: 24px; font-weight: 500;">Save</button>
-                </div>
-            </form>
+    <div class="card mt-4 border border-success">
+        <div class="text-center mt-4">
+            <p style="color: red; font-style: italic; font-size: 28px;">
+                <%= msg %>
+            </p>
         </div>
+        <form class="p-5" action="" method="post">
+            <div class="row mb-3">
+                <div class="col-1"></div>
+                <div class="col-10 form-floating">
+                    <input type="text" class="form-control border border-success rounded-2" id="floatingInput"
+                       name="name" placeholder="Password">
+                    <label class="ms-3" for="floatingInput">Tên thể loại</label>
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <div class="mt-4 text-center">
+                <button type="submit" class="btn btn-outline-success" style="width: 200px; height: 48px; font-size: 24px; font-weight: 500;">Save</button>
+            </div>
+        </form>   
     </div>
 
 <%- include('../inc/bottom.ejs') %>

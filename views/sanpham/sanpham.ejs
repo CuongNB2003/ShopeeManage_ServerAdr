@@ -3,23 +3,23 @@
     <script>
         function layIdTheLoai() {
             idTL = document.getElementById("locTheLoai").value;
-            window.location = '/sanpham/filter/' + idTL;
+            window.location = '/product/filter/' + idTL;
         }
         function sapXepTheoGia() {
             price = document.getElementById("priceSapXep").value;
-            window.location = '/sanpham/sort/' + price;
+            window.location = '/product/sort/' + price;
         }
     </script>
-    <!-- Thanh Dieu khien -->
-    <div class="text-center">
-        <h3>
+    <div class="text-center mt-4">
+        <p style="color: red; font-style: italic; font-size: 28px;">
             <%= msg %>
-        </h3>
+        </p>
     </div>
+    <!-- Thanh Dieu khien -->
     <div class="row mt-4">
         <nav class="navbar col-auto">
             <div class="container-fluid">
-                <form class="d-flex" role="search" action="/sanpham/search/">
+                <form class="d-flex" role="search" action="/product/search/">
                     <input class="form-control me-2 border border-primary" type="search" placeholder="Search theo tên"
                         aria-label="Search" style="width: 300px;" name="name" value="<%= name %>">
                     <button class="btn btn-outline-primary" type="submit" style="width: 150px;">Tìm kiếm</button>
@@ -27,7 +27,7 @@
             </div>
         </nav>
         <div class="col-auto mt-2">
-            <a href="/sanpham/add">
+            <a href="/product/add">
                 <button type="button" class="btn btn-outline-primary" style="width: 150px;">Thêm sản phẩm</button>
             </a>
         </div>
@@ -84,7 +84,7 @@
                         <%= index + 1%>
                     </th>
                     <td><img src="<%= row.image  %>" alt="" width="150px" height="100px"></td>
-                    <td><a href="/sanpham/chitiet/<%= row._id %>" style="text-decoration-line: none; color: black;">
+                    <td><a href="/product/chitiet/<%= row._id %>" style="text-decoration-line: none; color: black;">
                             <%= row.name %>
                         </a></td>
                     <td>
@@ -93,7 +93,7 @@
                     <td>
                         <%= row.price %> VNĐ
                     </td>
-                    <td><a href="/sanpham/edit/<%= row._id %>"><img src="/images/edit.png" alt="" srcset="" width="50px"
+                    <td><a href="/product/edit/<%= row._id %>"><img src="/images/edit.png" alt="" srcset="" width="50px"
                                 height="50px"></a></td>
                     <td>
                         <img src="/images/delete.png" alt="" srcset="" width="50px" height="50px" data-bs-toggle="modal"
@@ -115,7 +115,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                                <a href="/sanpham/delete/<%= row._id %>" class="btn btn-primary">Xóa</a>
+                                <a href="/product/delete/<%= row._id %>" class="btn btn-primary">Xóa</a>
                             </div>
                         </div>
                     </div>

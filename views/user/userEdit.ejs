@@ -1,49 +1,46 @@
 <%- include('../inc/top.ejs') %>
 
     <!-- Thêm user -->
-    <div class="text-center">
-        <h3>
-            <%= msg %>
-        </h3>
-    </div>
     <div class="card mt-4 border border-info">
-        <div class="card-body mt-3 p-5 ">
-            <form method="POST" enctype="multipart/form-data">
-                <div class="input-group mb-3 border border-info rounded-2">
-                    <input name="avata" type="file" class="form-control" value="<%= objUser.avata %>">
-                    <button type="submit" class="btn btn-outline-info">Upload</button>
-                </div>
-                <div class="form-floating mt-3 border border-info rounded-2">
-                    <input name="fullname" type="text" class="form-control" id="floatingPassword"
-                        placeholder="Nhập Fullname" value="<%= objUser.fullname %>">
-                    <label for="floatingPassword">Nhập Fullname</label>
-                </div>
-                <div class="form-floating mt-3 border border-info rounded-2">
-                    <input name="email" type="email" class="form-control" id="floatingPassword"
-                        placeholder="Nhập Email" value="<%= objUser.email %>">
-                    <label for="floatingPassword">Nhập Email</label>
-                </div>
-                <div class="card border border-info mt-3">
-                    <div class="row p-2">
-                        <p class="col-2">Chọn chức vụ</p>
-                        <div class="form-check col-1">
-                            <input class="form-check-input" type="radio" name="role" id="flexRadioDefault1"
-                                checked="checked">
-                            <label class="form-check-label" for="flexRadioDefault1">User</label>
-                        </div>
-                        <div class="form-check col-2">
-                            <input class="form-check-input" type="radio" name="role" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">Admin</label>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="mt-4 text-center">
-                    <button type="submit" class="btn btn-outline-info"
-                        style="width: 200px; height: 48px; font-size: 24px; font-weight: 500;">Save</button>
-                </div>
-            </form>
+        <div class="text-center mt-4">
+            <p style="color: red; font-style: italic; font-size: 28px;">
+                <%= msg %>
+            </p>
         </div>
-    </div>
+        <form class="p-5" method="POST" enctype="multipart/form-data">
+            <div class="row mb-3">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <div class=" input-group border border-info rounded-2">
+                        <input name="avata" type="file" class="form-control" value="<%= objUser.avata %>">
+                        <label class="btn btn-outline-info">Upload</label>
+                    </div>
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-1"></div>
+                <div class="col-10 form-floating">
+                    <input type="text" class="form-control border border-info rounded-2" id="floatingInput"
+                       name="fullname" placeholder="Password" value="<%= objUser.fullname %>">
+                    <label class="ms-3" for="floatingInput">Nhập fullname</label>
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-1"></div>
+                <div class="col-10 form-floating">
+                    <input type="text" class="form-control border border-info rounded-2" id="floatingInput"
+                       name="email" placeholder="Password" value="<%= objUser.email %>">
+                    <label class="ms-3" for="floatingInput">Nhập email</label>
+                </div>
+                <div class="col-1"></div>
+            </div>
 
+            <div class="mt-4 text-center">
+                <button type="submit" class="btn btn-outline-info"
+                    style="width: 200px; height: 48px; font-size: 24px; font-weight: 500;">Save</button>
+            </div>
+        </form>
+    </div>
     <%- include('../inc/bottom.ejs') %>

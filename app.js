@@ -31,8 +31,8 @@ app.use(session({
 
 app.use('/', indexRouter);
 app.use('/user', userRouter);
-app.use('/theloai', theloaiRouter);
-app.use('/sanpham', sanphamRouter);
+app.use('/category', theloaiRouter);
+app.use('/product', sanphamRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

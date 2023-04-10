@@ -21,7 +21,7 @@ exports.addTheLoai = async (req, res, next) => {
         try {
             let new_TL = await objTL.save();
             msg = "Thêm thể loại thành công"
-            res.redirect('/theloai/')
+            res.redirect('/category/')
         } catch (error) {
             msg = "Lỗi ghi cơ sở dữ liệu" + error.message;
         }
@@ -46,7 +46,7 @@ exports.editTheLoai = async (req, res, next) => {
         try {
             await myDB.theLoaiModel.findByIdAndUpdate(idTL, objTL)
             msg = "Sửa thể loại thành công"
-            res.redirect('/theloai/')
+            res.redirect('/category/')
         } catch (error) {
             msg = "Lỗi ghi cơ sở dữ liệu" + error.message;
         }
@@ -67,7 +67,7 @@ exports.deleteTheLoai = async (req, res, next) => {
     try {
         await myDB.theLoaiModel.findByIdAndDelete(req.params.idtl, req.body)
         msg = "Xóa thể loại thành công"
-        res.redirect('/theloai/')
+        res.redirect('/category/')
     } catch (error) {
         msg = "Lỗi ghi cơ sở dữ liệu" + error.message;
     }

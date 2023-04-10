@@ -13,7 +13,7 @@
             </div>
         </nav>
         <div class="col-auto mt-2">
-            <a href="/theloai/add">
+            <a href="/category/add">
                 <button type="button" class="btn btn-outline-success" style="width: 150px;">Thêm thể loại</button>
             </a>
         </div>
@@ -51,7 +51,7 @@
                     <td>
                         <%= row.name %>
                     </td>
-                    <td><a href="/theloai/edit/<%= row._id %>"><img src="/images/edit.png" alt="" srcset="" 
+                    <td><a href="/category/edit/<%= row._id %>"><img src="/images/edit.png" alt="" srcset="" 
                                 width="50px" height="50px"></a></td>
                     <td><img src="/images/delete.png" alt="" srcset="" width="50px" height="50px" 
                         data-bs-toggle="modal" data-bs-target="#xoa<%= row._id %>"></td>
@@ -68,7 +68,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                                <a href="/theloai/delete/<%= row._id %>" class="btn btn-primary" type="button">Xóa</a>
+                                <a href="/category/delete/<%= row._id %>" class="btn btn-primary" type="button">Xóa</a>
                             </div>
                         </div>
                     </div>

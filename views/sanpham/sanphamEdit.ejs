@@ -1,59 +1,73 @@
 <%- include('../inc/top.ejs') %>
 
-    <!-- Thêm sản phẩm -->
-    <div class="text-center">
-        <h3>
-            <%= msg %>
-        </h3>
-    </div>
+    <!-- Sửa sản phẩm -->
     <div class="card mt-4 border border-primary">
-        <div class="card-body mt-3 p-5 ">
-            <form method="POST" enctype="multipart/form-data">
-
-                <div class="input-group mb-3 border border-primary rounded-2">
-                    <input name="image" type="file" class="form-control">
-                    <button type="submit" class="btn btn-outline-info">Upload</button>
-                </div>
-
-                <select name="theloai" class="form-select mt-3 border border-primary rounded-2"
-                    aria-label="Default select example">
-                    <option selected>Chọn thể loại</option>
-                    <% listTL.forEach( (row)=> {
-                        let selected = ''
-                        if(String(row._id) == String(objSP.id_theloai))
-                        selected = 'selected' %>
-                        <option <%=selected %> value="<%= row._id %>"><%= row.name %>
-                        </option>
-                        <% }); %>
-                </select>
-
-                <div class="form-floating mt-3 border border-primary rounded-2">
-                    <input name="name" type="text" class="form-control" id="floatingPassword"
-                        placeholder="Nhập tên sản phẩm" value="<%= objSP.name  %>">
-                    <label for="floatingPassword">Tên sản phẩm</label>
-                </div>
-                <div class="form-floating mt-3 border border-primary rounded-2">
-                    <input name="image" type="text" class="form-control" id="floatingPassword"
-                        placeholder="Nhập ảnh sản phẩm" value="<%= objSP.image  %>">
-                    <label for="floatingPassword">Ảnh sản phẩm</label>
-                </div>
-                <div class="form-floating mt-3 border border-primary rounded-2">
-                    <input name="price" type="number" class="form-control" id="floatingPassword"
-                        placeholder="Nhập giá sản phẩm" value="<%= objSP.price  %>">
-                    <label for="floatingPassword">Giá sản phẩm</label>
-                </div>
-                <div class="form-floating mt-3 border border-primary rounded-2">
-                    <textarea name="desc" class="form-control" placeholder="Nhập mô tả sản phẩm"
-                        id="floatingTextarea2" style="height: 100px"><%= objSP.desc  %></textarea>
-                    <label for="floatingTextarea2">Mô tả sản phẩm</label>
-                </div>
-
-                <div class="mt-4 text-center">
-                    <button type="submit" class="btn btn-outline-primary"
-                        style="width: 200px; height: 48px; font-size: 24px; font-weight: 500;">Save</button>
-                </div>
-            </form>
+        <div class="text-center mt-4">
+            <p style="color: red; font-style: italic; font-size: 28px;">
+                <%= msg %>
+            </p>
         </div>
+        <form class="p-5" method="POST" enctype="multipart/form-data">
+            <div class="row mb-3">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <div class=" input-group border border-primary rounded-2">
+                        <input name="image" type="file" class="form-control" value="<%= objSP.image  %>">
+                        <label class="btn btn-outline-info">Upload</label>
+                    </div>
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <select name="theloai" class="form-select border border-primary rounded-2"
+                        aria-label="Default select example">
+                        <option selected>Chọn thể loại</option>
+                        <% listTL.forEach( (row)=> {
+                            let selected = ''
+                            if(String(row._id) == String(objSP.id_theloai))
+                            selected = 'selected' %>
+                            <option <%=selected %> value="<%= row._id %>"><%= row.name %>
+                            </option>
+                            <% }); %>
+                    </select>
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-1"></div>
+                <div class="col-10 form-floating">
+                    <input type="text" class="form-control border border-primary rounded-2" id="floatingInput"
+                       name="name" placeholder="Password" value="<%= objSP.name  %>" >
+                    <label class="ms-3" for="floatingInput">Tên sản phẩm</label>
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-1"></div>
+                <div class="col-10 form-floating">
+                    <input type="number" class="form-control border border-primary rounded-2" id="floatingInput"
+                       name="price" placeholder="Password" value="<%= objSP.price  %>">
+                    <label class="ms-3" for="floatingInput">Giá sản phẩm</label>
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10 form-floating">
+                    <textarea name="desc" class="form-control border border-primary rounded-2" placeholder="Nhập mô tả sản phẩm" id="floatingTextarea2"
+                        style="height: 100px"><%= objSP.desc  %></textarea>
+                    <label class="ms-3"  for="floatingTextarea2">Mô tả sản phẩm</label>
+                </div>
+                <div class="col-1"></div>
+            </div>
+
+            <div class="mt-4 text-center">
+                <button type="submit" class="btn btn-outline-primary"
+                    style="width: 200px; height: 48px; font-size: 24px; font-weight: 500;">Save</button>
+            </div>
+        </form>
     </div>
 
     <%- include('../inc/bottom.ejs') %>
