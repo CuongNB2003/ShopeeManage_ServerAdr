@@ -1,5 +1,5 @@
 var db = require('./database');
-
+const bcrypt = require("bcrypt");  // cài npm install bcrypt  --save
 // bảng sản phẩm
 const sanPhamSchema = new db.mongoose.Schema(
     {
@@ -47,12 +47,11 @@ userSchema.statics.findByCredentials = async (username, password) => {
     if (!user) {
         throw new Error('Không tồn tại user');
     }
-    const isPasswordMatch = await bcrypt.compare(password, user.password);
-    console.log(isPasswordMatch);
-    if (!isPasswordMatch) {
+    if(user.password != password){
         console.log('sai pass');
         throw new Error('Sai password');
     }
+    
     return user;
 }
 let userModel = db.mongoose.model('userModel', userSchema);

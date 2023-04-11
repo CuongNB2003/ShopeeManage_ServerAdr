@@ -23,3 +23,27 @@ exports.listProDuct = async (req, res, next) => {
         })
     }
 }
+
+exports.timKiemSP = async (req, res, next) =>{
+    var id = req.params.id; // Lấy ID từ đường dẫn
+    try {
+        let data = await product.productModel.findById(id).populate('id_theloai');
+        console.log(data);
+        if (data) {
+            return res.status(200).json(
+                {
+                    msg: 'get data',
+                    data: data
+                }
+            );
+        } else {
+            return res.status(404).json({ msg: 'Not Found' });
+        }
+    } catch (error) {
+        return res.status(error.status).json(
+            {
+                msg: error.message
+            }
+        )
+    }
+}

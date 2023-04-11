@@ -1,8 +1,10 @@
 var myMD = require('../../models/db.model')
+const bcrypt = require("bcrypt"); 
 
 exports.dangNhap = async (req, res, next) => {
     try {
-        const user = await myMD.userModel.findByCredentials(req.body.username, req.body.passwd);
+        
+        const user = await myMD.userModel.findByCredentials(req.body.username, req.body.password);
         if (!user) {
             return res.status(401)
                     .json({error: 'Sai thông tin đăng nhập'});
@@ -28,7 +30,7 @@ exports.dangKy = async (req, res, next) => {
 
         user.passwd = await bcrypt.hash(req.body.passwd, salt);
  
-        // user.token = await user.generateAuthToken();
+        user.token = await user.generateAuthToken();
         console.log(req.file);
         // lưu ảnh và tạo đường dẫn ảnh nếu có
         try {
@@ -52,7 +54,7 @@ exports.dangKy = async (req, res, next) => {
 
 exports.doiMatKhau = async (req, res, next) => {
     try {
-        // const user = await model.userModel.findOne({token: req.body.token});
+        const user = await model.userModel.findOne({token: req.body.token});
         if (!user) {
           return res.status(404).send({ message: 'User not found' });
         }
@@ -102,7 +104,7 @@ exports.dangXuat = async (req, res, next) => {
     try {
         console.log( req.user);
         // req.user.generateAuthToken();
-        // req.user.token = null; //xóa token
+        req.user.token = null; //xóa token
         await req.user.save()
         return res.status(200).json({msg: 'Đăng xuất thành công'});
     } catch (error) {
