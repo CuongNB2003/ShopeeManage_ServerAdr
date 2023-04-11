@@ -23,15 +23,21 @@ exports.dangNhap = async (req, res, next) =>{
         
         try {
             let objU = await myDB.userModel.findOne({username: req.body.username})
+            console.log(objU);
             if(objU != null){
-                if(objU.password == req.body.password){
-                    req.session.userInformation = objU
-                    return res.redirect('/');
+                if(objU.role == true){
+                    if(objU.password == req.body.password){
+                        req.session.userInformation = objU
+                        return res.redirect('/');
+                    }else{
+                        msg = "Bạn nhập sai mật khẩu "
+                    }
                 }else{
-                    msg = "sai mật khẩu "
+                    msg = "Tài khoản của bạn không có quyền truy cập"
                 }
             }else{
-                msg = "không tồn tại user"
+                msg = "Tài khoản không tồn tại"
+
             }
         } catch (error) {
             msg = error.message

@@ -2,7 +2,7 @@ var myMD = require('../../models/db.model')
 
 exports.listProDuct = async (req, res, next) => {
     try {
-        let listSP = await myMD.sanPhamModel.find();
+        let listSP = await myMD.sanPhamModel.find().populate('id_theloai');
         if (listSP) {
             return res.status(200).json(
                 {

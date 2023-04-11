@@ -7,10 +7,11 @@ var category_api = require('../controller/API/category.api')
 router.get('/list-product', product_api.listProDuct);
 router.get('/list-category', category_api.listCategory);
 
-router.get('/dangnhap-user', user_api.dangNhap);
-router.get('/dangky-user', user_api.dangKy);
-router.get('/doimatkhau-user', user_api.doiMatKhau);
-router.get('/doithongtin-user', user_api.doiThongTin);
+router.post('/dangnhap', user_api.dangNhap);
+router.post('/dangky', user_api.dangKy);
+router.put('/doimatkhau', user_api.doiMatKhau);
+router.put('/doithongtin', user_api.doiThongTin);
+router.get('/dangxuat', user_api.dangXuat);
 
 
 module.exports = router;
