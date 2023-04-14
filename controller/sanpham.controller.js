@@ -29,13 +29,18 @@ exports.listSanPham = async (req, res, next) => {
 
     let listSP = await myDB.sanPhamModel.find(dieuKienLoc).sort(dieuKienSapXep).populate('id_theloai')
     let listTL = await myDB.theLoaiModel.find()
-    res.render('sanpham/sanpham', { title: tieuDe, msg: msg, listSP: listSP, listTL: listTL, idTheLoai: req.params.idtl, name: req.query.name, typeSort: req.params.price })
+    res.render('sanpham/sanpham', { 
+        title: tieuDe, msg: msg, listSP: listSP, 
+        listTL: listTL, 
+        idTheLoai: req.params.idtl, 
+        name: req.query.name, 
+        typeSort: req.params.price 
+    })
 }
 
 exports.addSanPham = async (req, res, next) => {
     let tieuDe = 'Thêm Sản Phẩm';
     let msg = '';
-    let url_file = ''
     let listTL = await myDB.theLoaiModel.find()
 
     if (req.method == "POST") {
@@ -58,13 +63,15 @@ exports.addSanPham = async (req, res, next) => {
         }
     }
 
-    res.render('sanpham/sanphamAdd', { title: tieuDe, msg: msg, listTL: listTL })
+    res.render('sanpham/sanphamAdd', { 
+        title: tieuDe, msg: msg, 
+        listTL: listTL 
+    })
 }
 
 exports.editSanPham = async (req, res, next) => {
     let tieuDe = 'Sửa Sản Phẩm';
     let msg = '';
-    let url_file = ''
     let idSP = req.params.idsp;
     let listTL = await myDB.theLoaiModel.find()
     let objSP = await myDB.sanPhamModel.findById(idSP);
@@ -90,7 +97,11 @@ exports.editSanPham = async (req, res, next) => {
         }
     }
 
-    res.render('sanpham/sanphamEdit', { title: tieuDe, msg: msg, listTL: listTL, objSP: objSP })
+    res.render('sanpham/sanphamEdit', { 
+        title: tieuDe, msg: msg, 
+        listTL: listTL, 
+        objSP: objSP 
+    })
 }
 
 exports.deleteSanPham = async (req, res, next) => {

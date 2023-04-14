@@ -28,39 +28,30 @@ exports.listUser = async (req, res, next) => {
     let listUser = await myDB.userModel.find(dieuKienLoc).sort(dieuKienSapXep);
 
     res.render('user/user', {
-        title: tieuDe, listUser: listUser, msg: msg, luuRole: req.params.role, fullname: req.query.fullname,
-        typeFilter: req.params.role, typeSort: req.params.username
+        title: tieuDe, msg: msg, 
+        listUser: listUser,
+        luuRole: req.params.role, 
+        fullname: req.query.fullname,
+        typeFilter: req.params.role, 
+        typeSort: req.params.username
     })
 }
 
 exports.addUser = async (req, res, next) => {
     let tieuDe = 'Thêm User';
     let msg = '';
-    let url_file = ''
     let listUser = await myDB.userModel.find()
     if (req.method == "POST") {
         listUser.forEach( (row) => {
             if(row.username == req.body.username){
                 msg = "Tài khoản đã tồn tại"
-                return  res.render('user/userAdd', { title: tieuDe, msg: msg,
-                    // userName: req.body.username, 
-                    // passWord: req.body.password, 
-                    // fullName: req.body.fullname, 
-                    // email: req.body.email, 
-                    // nhaplaiMK: req.body.passwordRe 
-                })
+                return  res.render('user/userAdd', { title: tieuDe, msg: msg })
             }
         });
 
         if(req.body.password != req.body.passwordRe){
             msg = "Xác nhận lại mật khẩu không đúng"
-            return  res.render('user/userAdd', { title: tieuDe, msg: msg,
-                // userName: req.body.username, 
-                // passWord: req.body.password, 
-                // fullName: req.body.fullname, 
-                // email: req.body.email, 
-                // nhaplaiMK: req.body.passwordRe 
-            })
+            return  res.render('user/userAdd', { title: tieuDe, msg: msg })
         }
 
         try {
@@ -82,13 +73,7 @@ exports.addUser = async (req, res, next) => {
     }
 
     res.render('user/userAdd', {
-        title: tieuDe, msg: msg,
-        // userName: req.body.username, 
-        // passWord: req.body.password, 
-        // fullName: req.body.fullname, 
-        // email: req.body.email, 
-        // nhaplaiMK: req.body.passwordRe
-    })
+        title: tieuDe, msg: msg })
 }
 
 exports.editUser = async (req, res, next) => {
@@ -96,7 +81,6 @@ exports.editUser = async (req, res, next) => {
     let msg = '';
     let idUser = req.params.iduser;
     let objUser = await myDB.userModel.findById(idUser);
-    let url_file = ''
     if (req.method == "POST") {
         
         try {
