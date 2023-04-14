@@ -3,8 +3,8 @@ var router = express.Router();
 var sanphamCtrl = require('../controller/sanpham.controller');
 var multer = require('multer')
 var uploadImg = multer({dest: './tmp'})
-var checkLogin = require('../middleware/check_login');
-router.use(checkLogin.yeuCauDangNhap)
+var middleware = require('../middleware/check_login');
+router.use(middleware.dieuHuongDangNhap)
 
 router.get('/', sanphamCtrl.listSanPham)
 router.get('/filter/:idtl',  sanphamCtrl.listSanPham)

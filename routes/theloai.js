@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var theloaiCtrl = require('../controller/theloai.controller');
-var checkLogin = require('../middleware/check_login');
-router.use(checkLogin.yeuCauDangNhap)
+var middleware = require('../middleware/check_login');
+router.use(middleware.dieuHuongDangNhap)
 
 router.get('/', theloaiCtrl.listTheLoai)
 

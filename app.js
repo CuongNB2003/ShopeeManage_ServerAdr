@@ -34,13 +34,13 @@ app.use(session({
 app.use('/', 
     indexRouter);
 app.use('/user',
-    checkDangNhap.yeuCauDangNhap, 
+    checkDangNhap.dieuHuongDangNhap, 
     userRouter);
 app.use('/category',
-    checkDangNhap.yeuCauDangNhap, 
+    checkDangNhap.dieuHuongDangNhap, 
     theloaiRouter);
 app.use('/product',
-    checkDangNhap.yeuCauDangNhap, 
+    checkDangNhap.dieuHuongDangNhap, 
     sanphamRouter);
 app.use('/api', 
     ApiRouter);

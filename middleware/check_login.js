@@ -1,4 +1,4 @@
-exports.yeuCauDangNhap = (req, res, next )=>{
+exports.dieuHuongDangNhap = (req, res, next )=>{
     if(req.session.userInformation){
         // có tồn tại session
         next();

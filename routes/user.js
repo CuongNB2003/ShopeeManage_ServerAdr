@@ -3,12 +3,12 @@ var router = express.Router();
 var userCtrl = require('../controller/user.controller');
 var multer = require('multer')
 var uploadAvata = multer({dest: './tmp'})
-var checkLogin = require('../middleware/check_login');
-router.use(checkLogin.yeuCauDangNhap)
+var middleware = require('../middleware/check_login');
+router.use(middleware.dieuHuongDangNhap)
 
 router.get('/', userCtrl.listUser)
 router.get('/filter/:role', userCtrl.listUser)
-router.get('/sort/:username', checkLogin.yeuCauDangNhap, userCtrl.listUser)
+router.get('/sort/:username', userCtrl.listUser)
 router.get('/search', userCtrl.listUser)
 
 router.get('/add', userCtrl.addUser)
