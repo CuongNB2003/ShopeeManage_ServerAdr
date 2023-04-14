@@ -4,20 +4,21 @@ var userCtrl = require('../controller/user.controller');
 var multer = require('multer')
 var uploadAvata = multer({dest: './tmp'})
 var checkLogin = require('../middleware/check_login');
+router.use(checkLogin.yeuCauDangNhap)
 
-router.get('/', checkLogin.yeuCauDangNhap, userCtrl.listUser)
-router.get('/filter/:role', checkLogin.yeuCauDangNhap, userCtrl.listUser)
+router.get('/', userCtrl.listUser)
+router.get('/filter/:role', userCtrl.listUser)
 router.get('/sort/:username', checkLogin.yeuCauDangNhap, userCtrl.listUser)
-router.get('/search', checkLogin.yeuCauDangNhap, userCtrl.listUser)
+router.get('/search', userCtrl.listUser)
 
-router.get('/add', checkLogin.yeuCauDangNhap, userCtrl.addUser)
-router.post('/add', checkLogin.yeuCauDangNhap, uploadAvata.single("avata"), userCtrl.addUser)
+router.get('/add', userCtrl.addUser)
+router.post('/add', uploadAvata.single("avata"), userCtrl.addUser)
 
-router.get('/edit/:iduser', checkLogin.yeuCauDangNhap, userCtrl.editUser)
-router.post('/edit/:iduser', checkLogin.yeuCauDangNhap, uploadAvata.single("avata"), userCtrl.editUser)
+router.get('/edit/:iduser', userCtrl.editUser)
+router.post('/edit/:iduser', uploadAvata.single("avata"), userCtrl.editUser)
 
-router.get('/delete/:iduser', checkLogin.yeuCauDangNhap, userCtrl.deleteUser)
+router.get('/delete/:iduser', userCtrl.deleteUser)
 
-router.get('/block', checkLogin.yeuCauDangNhap, userCtrl.blockUser)
+router.get('/block', userCtrl.blockUser)
 
 module.exports = router;

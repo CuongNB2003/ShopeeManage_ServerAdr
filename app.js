@@ -10,6 +10,7 @@ var userRouter = require('./routes/user');
 var sanphamRouter = require('./routes/sanpham');
 var theloaiRouter = require('./routes/theloai');
 var ApiRouter = require('./routes/api');
+var checkDangNhap = require('./middleware/check_login')
 
 
 var app = express();
@@ -30,11 +31,19 @@ app.use(session({
 }))
 
 
-app.use('/', indexRouter);
-app.use('/user', userRouter);
-app.use('/category', theloaiRouter);
-app.use('/product', sanphamRouter);
-app.use('/api', ApiRouter);
+app.use('/', 
+    indexRouter);
+app.use('/user',
+    checkDangNhap.yeuCauDangNhap, 
+    userRouter);
+app.use('/category',
+    checkDangNhap.yeuCauDangNhap, 
+    theloaiRouter);
+app.use('/product',
+    checkDangNhap.yeuCauDangNhap, 
+    sanphamRouter);
+app.use('/api', 
+    ApiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

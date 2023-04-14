@@ -62,24 +62,15 @@ exports.addUser = async (req, res, next) => {
                 // nhaplaiMK: req.body.passwordRe 
             })
         }
-        
-        try {
-            fs.renameSync(req.file.path, './public/avata/' + req.file.originalname);
-            // dùng url file để ghi vào csdl
-            url_file = '/avata/' + req.file.originalname
-
-            msg = 'Địa chỉ hình ảnh: ' + url_file;
-            console.log(url_file);
-        } catch (error) {
-            msg = error.message
-        }
 
         try {
             let objUser = new myDB.userModel();
             objUser.username = req.body.username;
             objUser.password = req.body.password;
             objUser.fullname = req.body.fullname;
-            objUser.avata = url_file;
+            fs.renameSync(req.file.path, './public/avata/' + req.file.originalname);
+            // dùng url file để ghi vào csdl
+            objUser.avata = '/avata/' + req.file.originalname
             objUser.email = req.body.email;
             objUser.role = true;
             let new_User = await objUser.save();
@@ -107,17 +98,13 @@ exports.editUser = async (req, res, next) => {
     let objUser = await myDB.userModel.findById(idUser);
     let url_file = ''
     if (req.method == "POST") {
-        try {
-            fs.renameSync(req.file.path, './public/avata/' + req.file.originalname);
-            // dùng url file để ghi vào csdl
-            url_file = '/avata/' + req.file.originalname
-        } catch (error) {
-            msg = error.message
-        }
+        
         try {
             let objUser = new myDB.userModel();
             objUser.fullname = req.body.fullname;
-            objUser.avata = url_file
+            fs.renameSync(req.file.path, './public/avata/' + req.file.originalname);
+            // dùng url file để ghi vào csdl
+            objUser.avata = '/avata/' + req.file.originalname
             objUser.email = req.body.email;
 
             objUser._id = idUser
