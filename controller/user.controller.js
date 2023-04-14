@@ -25,7 +25,7 @@ exports.listUser = async (req, res, next) => {
         }
     }
 
-    let listUser = await myDB.userModel.find(dieuKienLoc).sort(dieuKienSapXep).limit(4);
+    let listUser = await myDB.userModel.find(dieuKienLoc).sort(dieuKienSapXep);
 
     res.render('user/user', {
         title: tieuDe, listUser: listUser, msg: msg, luuRole: req.params.role, fullname: req.query.fullname,
@@ -42,13 +42,25 @@ exports.addUser = async (req, res, next) => {
         listUser.forEach( (row) => {
             if(row.username == req.body.username){
                 msg = "Tài khoản đã tồn tại"
-                return  res.render('user/userAdd', { title: tieuDe, msg: msg, })
+                return  res.render('user/userAdd', { title: tieuDe, msg: msg,
+                    // userName: req.body.username, 
+                    // passWord: req.body.password, 
+                    // fullName: req.body.fullname, 
+                    // email: req.body.email, 
+                    // nhaplaiMK: req.body.passwordRe 
+                })
             }
         });
 
         if(req.body.password != req.body.passwordRe){
             msg = "Xác nhận lại mật khẩu không đúng"
-            return  res.render('user/userAdd', { title: tieuDe, msg: msg, })
+            return  res.render('user/userAdd', { title: tieuDe, msg: msg,
+                // userName: req.body.username, 
+                // passWord: req.body.password, 
+                // fullName: req.body.fullname, 
+                // email: req.body.email, 
+                // nhaplaiMK: req.body.passwordRe 
+            })
         }
         
         try {
@@ -78,7 +90,14 @@ exports.addUser = async (req, res, next) => {
         }
     }
 
-    res.render('user/userAdd', { title: tieuDe, msg: msg, })
+    res.render('user/userAdd', {
+        title: tieuDe, msg: msg,
+        // userName: req.body.username, 
+        // passWord: req.body.password, 
+        // fullName: req.body.fullname, 
+        // email: req.body.email, 
+        // nhaplaiMK: req.body.passwordRe
+    })
 }
 
 exports.editUser = async (req, res, next) => {
@@ -95,15 +114,14 @@ exports.editUser = async (req, res, next) => {
         } catch (error) {
             msg = error.message
         }
-
-        let objUser = new myDB.userModel();
-        objUser.fullname = req.body.fullname;
-        objUser.avata = url_file
-        objUser.email = req.body.email;
-
-        objUser._id = idUser
-
         try {
+            let objUser = new myDB.userModel();
+            objUser.fullname = req.body.fullname;
+            objUser.avata = url_file
+            objUser.email = req.body.email;
+
+            objUser._id = idUser
+
             await myDB.userModel.findByIdAndUpdate(idUser, objUser);
             msg = "Sửa user thành công"
             res.redirect('/user/')
@@ -120,10 +138,9 @@ exports.deleteUser = async (req, res, next) => {
     let msg = '';
     let idUser = req.params.iduser;
 
-    let objUser = new myDB.userModel();
-    objUser._id = idUser;
-
     try {
+        let objUser = new myDB.userModel();
+        objUser._id = idUser;
         await myDB.userModel.findByIdAndDelete(idUser, objUser)
         msg = "Xóa user thành công"
         res.redirect('/user/')
