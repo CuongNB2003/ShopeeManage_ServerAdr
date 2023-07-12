@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= title %> | Shopee Manage
+  </title>
+  <link rel="icon" type="image/x-icon" href="/images/logo-shopee.png">
+  <link rel="stylesheet" href="/stylesheets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/login.css">
+  <link rel="stylesheet" href="/images/bootstrap-icons-1.10.5/font/bootstrap-icons.css">
+  <script src="/javascripts/js/bootstrap.bundle.js"></script>
+</head>
+
+<body>
+  <div class="row">
+    <div class="col-md-7 col-sm-12 card boderCard position-absolute top-50 start-50 translate-middle">
+      <div class="row">
+        <div class="col-6">
+          <img class="m-5" src="/images/logo-shopee.png" alt="" width="350px" height="350px">
+        </div>
+        <div class="col-6">
+          <form class="loginCustem" method="POST">
+            <h3 class="titleLogin">
+              <%= title %>
+            </h3>
+            <div class="input-group inputLogin">
+              <span class="input-group-text">
+                <span class="bi-person"></span>
+              </span>
+              <input name="username" type="text" class="form-control" placeholder="Username">
+            </div>
+            <div class="input-group inputLogin">
+              <span class="input-group-text">
+                <span class="bi-key"></span>
+              </span>
+              <input name="password" type="password" class="form-control" placeholder="Password">
+            </div>
+            <p class="msg-err">
+              <%= msg %>
+            </p>
+            <button type="submit" class="btnLogin mt-3">Đăng nhập</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,203 @@
+<%- include('../inc/header.ejs') %>
+    <script>
+        function sapXepTheoTen() {
+            name = document.getElementById("nameSort").value;
+            window.location = '/staff/sort-name/' + name;
+        }
+        function sapXepTheoTuoi() {
+            age = document.getElementById("ageSort").value;
+            window.location = '/staff/sort-age/' + age;
+        }
+    </script>
+
+    <h2 class="text-center mb-4" style="color: #ea5120;">
+        <%= title %>
+    </h2>
+    <!-- Thanh Dieu khien -->
+    <div class="row">
+        <div class="col-md-6 col-sm-12 row">
+            <div class="col-md-3 col-sm-4 pt-2">
+                <a href="/staff/add">
+                    <button type="button" class="btnCustom" style="width: 150px;">Thêm</button>
+                </a>
+            </div>
+            <div class="col-md-3 col-sm-4 pt-2">
+                <select id="nameSort" onchange="sapXepTheoTen()" class="form-select boderBtn pe-md-4" style="width: 150px;">
+                    <% let noneSN='' ; let S1N='' ; let S2N='' ; 
+                    if(sortNameS=='1' ){ 
+                        S1N=' selected ' ; 
+                    }else if(sortNameS=='-1' ){ 
+                        S2N=' selected ' ; 
+                    }else{ 
+                        noneSN=' selected ' ; 
+                    } %>
+                        <option <%=noneSN %> value="0">Sắp xếp tên</option>
+                        <option <%=S2N %> value="1">A đến Z</option>
+                        <option <%=S1N %> value="-1">Z đến A</option>
+                </select>
+            </div>
+            <div class="col-md-3 col-sm-4 pt-2">
+                <select id="ageSort" onchange="sapXepTheoTuoi()" class="form-select boderBtn" style="width: 150px;">
+                    <% let noneSA='' ; let S1A='' ; let S2A='' ; 
+                    if(sortAge=='1' ){ 
+                        S1A=' selected ' ; 
+                    }else if(sortAge=='-1' ){ 
+                        S2A=' selected ' ; 
+                    }else{ 
+                        noneSA=' selected ' ; 
+                    } %>
+                        <option <%=noneSA %> value="0">Sắp xếp tuổi</option>
+                        <option <%=S2A %> value="-1">Cao đến thấp</option>
+                        <option <%=S1A %> value="1">Thấp đến cao</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12 d-flex justify-content-end ps-3">
+            <nav class="navbar">
+                <div class="container-fluid">
+                    <form class="d-flex" role="search" action="/staff/search/">
+                        <input class="form-control me-2 boderBtn" type="search" placeholder="Search theo tên"
+                            aria-label="Search" style="width: 282px;" name="fullname">
+                        <button class="btnCustom" type="submit" style="width: 150px;">Tìm kiếm</button>
+                    </form>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Bảng -->
+
+    <table class="table table-bordered table-hover mt-2">
+        <thead class="borderTable bg-thead">
+            <tr>
+                <th scope="col" class="col-1 text-center">STT</th>
+                <th scope="col" class="col-1 text-center">Avata</th>
+                <th scope="col" class="col-2 text-center">Họ và Tên</th>
+                <th scope="col" class="col-2 d-none d-sm-table-cell text-center">Số điện thoại</th>
+                <th scope="col" class="col-2 d-none d-md-table-cell text-center">Email</th>
+                <th scope="col" class="col-2 d-none d-md-table-cell text-center">Địa chỉ</th>
+                <th scope="col" class="col-1 text-center">Tuổi</th>
+                <th scope="col" class="col-1 text-center">Chặn staff</th>
+            </tr>
+        </thead>
+        <tbody class="borderTable">
+            <% for(let i=0;i < listStaff.length ; i++){ %>
+                <tr>
+                    <th scope="row" class="text-center">
+                        <%= i + 1 %>
+                    </th>
+                    <td class="text-center"><img src="<%= listStaff[i].avata %>" alt="" width="60px" height="80px">
+                    </td>
+                    <td class="text-center">
+                        <%= listStaff[i].fullname %>
+                    </td>
+                    <th class="text-center d-none d-sm-table-cell">
+                        <%= listStaff[i].phone %>
+                    </th>
+
+                    <th class="text-center d-none d-md-table-cell">
+                        <%= listStaff[i].email %>
+                    </th>
+                    <th class="text-center d-none d-md-table-cell">
+                        <%= listStaff[i].id_role.status %>
+                    </th>
+                    <th class="text-center">
+                        <%= listStaff[i].age %>
+                    </th>
+                    
+                    <!-- Chức năng khóa user -->
+                    <% if(listStaff[i].acc_status){ %>
+                        <td class="text-center mt-2">
+                            <button type="button" class="btnTable" data-bs-toggle="modal"
+                                data-bs-target="#lockUser<%= listStaff[i]._id%>" style="width: 48px; height: 48px;">
+                                <i class="bi bi-wifi" style="font-size: 2rem;"></i>
+                            </button>
+    
+                            <div class="modal fade" id="lockUser<%= listStaff[i]._id%>" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Tắt nhân viên</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <span>Nhân viên này sẽ mất quyền truy cập.</span>
+                                            <span>Bạn có chắc muốn tắt quyền truy cập của nhân viên này ?</span>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Hủy</button>
+                                            <a class="btn btn-primary" href="/staff/off-staff/<%= listStaff[i]._id%>">Tắt</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    <% }else{ %>
+                        <td class="text-center">
+                            <button type="button" class="btnBlock" data-bs-toggle="modal"
+                                data-bs-target="#lockUser<%= listStaff[i]._id%>" style="width: 48px; height: 48px;">
+                                <i class="bi bi-wifi-off" style="font-size: 2rem;"></i>
+                            </button>
+    
+                            <div class="modal fade" id="lockUser<%= listStaff[i]._id%>" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Bật nhân viên</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <span>Nhân viên này sẽ có lại quyền truy cập.</span>
+                                            <span>Bạn có chắc muốn bật quyền truy cập của nhân viên này ?</span>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Hủy</button>
+                                            <a class="btn btn-primary" href="/staff/on-staff/<%=listStaff[i]._id%>">Bật</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    <% } %>
+                    
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+
+    <!-- Chia  -->
+    <% let countV=1 %>
+    <div class="row">
+            <div class="col-6 d-flex justify-content-start">
+                <b style="font-size: 16px;">Số lượng: <%= count %></b>
+            </div>
+            <div class="col-6 d-flex justify-content-end">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <% for(let i=0; i < count ; i +=5){ %>
+
+                            <li class="page-item"><a class="page-link" href="/staff?Index=<%= i %>">
+                                    <%= countV %>
+                                </a></li>
+                            <% countV++; } %>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                    </ul>
+                </nav>
+            </div>
+    </div>
+
+<%- include('../inc/footer.ejs') %>

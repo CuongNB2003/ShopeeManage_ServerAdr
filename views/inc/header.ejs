@@ -1,0 +1,118 @@
+<% var acHome='' ; var acProduct='' ; var acUser='' ; var acBill='' ; var acAccount='' ; if (typeof(title)=='undefined'
+    ) { title='' ; } if(title !='' ){ if(title=="TRANG CHỦ" ){ acHome='active' ; }else if(title=="DANH SÁCH SẢN PHẨM" ||
+    title=="DANH SÁCH THỂ LOẠI" ){ acProduct='active' ; }else if(title=="DANH SÁCH KHÁCH HÀNG" ||
+    title=="DANH SÁCH NHÂN VIÊN" ){ acUser='active' ; }else if(title=="DANH SÁCH HÓA ĐƠN" ){ acBill='active' ; }else
+    if(title=='ĐỔI MẬT KHẨU' ){ acAccount='active' ; } } %>
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            <%= title %> | Shopee Manage
+        </title>
+        <link rel="icon" type="image/x-icon" href="/images/logo-shopee.png">
+        <link rel="stylesheet" href="/stylesheets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/stylesheets/indexStyle.css">
+        <link rel="stylesheet" href="/images/bootstrap-icons-1.10.5/font/bootstrap-icons.css">
+        <script src="/javascripts/js/bootstrap.bundle.js"></script>
+    </head>
+
+    <body>
+        <div>
+            <nav class=" colerHeader navbar navbar-expand-lg">
+                <div class="container-fluid col-12 col-sm-11">
+                    <img src="/images/logo-shopee.png" class="logo" alt="">
+                    <a class="navbar-brand fw-semibold fs-2" href="/">Shopee Manage</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse fw-semibold fs-5" id="navbarSupportedContent">
+                        <ul class="nemuTop navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item me-2">
+                                <a class="nav-link <%- acHome %>" href="/">
+                                    <i class="bi bi-house-fill" style="color: white;"></i>
+                                    <span style="color: white;">Home</span>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown me-2">
+                                <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="bi bi-box-seam-fill" style="color: white;"></i>
+                                    <span style="color: white;">Sản phẩm</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="/product">
+                                            <i class="bi bi-inboxes-fill me-2" style="color: #ea5120;"></i>
+                                            <span style="color: #ea5120;;">Sản phẩm</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="/category">
+                                            <i class="bi bi-diagram-3-fill me-2" style="color: #ea5120;"></i>
+                                            <span style="color: #ea5120;;">Thể loại</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown me-2">
+                                <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="bi bi-person-circle" style="color: white;"></i>
+                                    <span style="color: white;">Tài khoản</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/user">
+                                            <i class="bi bi-people-fill me-2" style="color: #ea5120;"></i>
+                                            <span style="color: #ea5120;;">Khách hàng</span>
+                                        </a></li>
+                                    <li><a class="dropdown-item" href="/staff">
+                                            <i class="bi bi-person-fill-gear me-2" style="color: #ea5120;"></i>
+                                            <span style="color: #ea5120;;">Nhân viên</span>
+                                        </a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item me-2">
+                                <a class="nav-link " href="/">
+                                    <i class="bi bi-clipboard2-data-fill" style="color: white;"></i>
+                                    <span style="color: white;">Hóa đơn</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item dropdown me-2">
+                                <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="bi bi-gear-fill" style="color: white;"></i>
+                                    <span style="color: white;">Cài đặt</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/change-pass">
+                                            <i class="bi bi-key-fill me-2" style="color: #ea5120;"></i>
+                                            <span style="color: #ea5120;">Đổi mật khẩu</span>
+                                    </a></li>
+                                    <li><a class="dropdown-item" href="/change-info">
+                                        <i class="bi bi-person-vcard-fill me-2" style="color: #ea5120;"></i>
+                                        <span style="color: #ea5120;">Sửa thông tin</span>
+                                    </a></li>
+                                    <li><a class="dropdown-item" href="/log-out">
+                                            <i class="bi bi-door-closed-fill me-2" style="color: #ea5120;"></i>
+                                            <span style="color: #ea5120;">Đăng xuất</span>
+                                    </a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="">
+                            <img src="<%= sAvata %>" alt="" width="48px" height="48px" style="border-radius: 100px;">
+                            <span class="ps-2" style="color: black; font-size: 24px; font-weight: bold;"><%= sUser %></span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="p-3 p-sm-5">

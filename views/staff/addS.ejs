@@ -1,0 +1,63 @@
+<%- include('../inc/header.ejs') %>
+    <h2 class="text-center mb-4" style="color: #ea5120;">
+        <%= title %>
+    </h2>
+    <!-- Thêm sản phẩm -->
+    <div class="row mb-5">
+        <div class="col-md-2 col-sm-1"></div>
+        <div class="col-md-8 col-sm-10 mt-4 card boderCard">
+            <div class="text-center mt-4">
+                <p style="color: red; font-style: italic; font-size: 16px;">
+                    <%= msg %>
+                </p>
+            </div>
+            <form class="row" action="" method="POST" enctype="multipart/form-data">
+                <!-- thêm nhân viên -->
+                <div class="col-md-1 "></div>
+                <div class="col-md-10 row">
+                    <div class=" input-group rounded-2">
+                        <input name="upload-avata" type="file" class="form-control boderBtn" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputEmail4" class="form-label formtext">Tên đăng nhập</label>
+                        <input name="username" type="text" class="form-control boderBtn" id="inputEmail4" placeholder="tên tài khoản của bạn">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputPassword4" class="form-label formtext">Họ và tên</label>
+                        <input name="fullname" type="text" class="form-control boderBtn" id="inputPassword4" placeholder="họ và tên của bạn">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="inputAddress" class="form-label formtext">Địa chỉ</label>
+                        <input name="address" type="text" class="form-control boderBtn" id="inputAddress" placeholder="địa chỉ nơi bạn đang sinh sống">
+                    </div>
+                    <div class="col-md-5">
+                        <label for="inputAddress2" class="form-label formtext">Email</label>
+                        <input name="email" type="email" class="form-control boderBtn" id="inputAddress2" placeholder="kết thúc bằng @gmail.com">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="inputCity" class="form-label formtext">Số điện thoại</label>
+                        <input name="phone" type="text" class="form-control boderBtn" id="inputCity" placeholder="số điện thoại bạn sử dụng">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="inputCity" class="form-label formtext">Tuổi</label>
+                        <input name="age" type="number" class="form-control boderBtn" id="inputCity" placeholder="15-60">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputAddress" class="form-label formtext">Mật khẩu</label>
+                        <input name="password" type="password" class="form-control boderBtn" id="inputAddress" placeholder="mật khẩu của bạn">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputAddress" class="form-label formtext">Nhập lại mật khẩu</label>
+                        <input name="passwordRe" type="password" class="form-control boderBtn" id="inputAddress" placeholder="nhập lại mật khẩu">
+                    </div>
+                    <div class="mt-5 text-center mb-5">
+                        <button type="submit" class=" btnCustom"
+                            style="width: 200px; height: 48px; font-size: 24px;">Save</button>
+                    </div>
+                </div>
+                <div class="col-md-1 "></div>
+            </form>
+        </div>
+        <div class="col-md-2 col-sm-1"></div>
+    </div>
+    <%- include('../inc/footer.ejs') %>

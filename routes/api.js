@@ -1,18 +1,41 @@
-var express = require('express');
-var router = express.Router();
-var user_api = require('../controller/API/user.api')
-var product_api = require('../controller/API/product.api')
-var category_api = require('../controller/API/category.api')
+var express = require('express')
+var router = express.Router()
+var roleApi = require('../controllers/API/role.api')
+var userApi = require('../controllers/API/user.api')
+var cateApi = require('../controllers/API/category.api')
+var prodApi = require('../controllers/API/product.api')
 
-router.get('/list-product', product_api.listProDuct);
-router.get('/list-category', category_api.listCategory);
-// router.get('/list-product/:id', product_api.timKiemSP);
+const multer = require('multer')
+var uploadAvata = multer({dest : './tmp'})
+var uploadProd = multer({dest : './tmp'})
 
-router.post('/login', user_api.dangNhap);
-router.post('/reg', user_api.dangKy);
-router.put('/doimatkhau', user_api.doiMatKhau);
-router.put('/doithongtin', user_api.doiThongTin);
-router.get('/dangxuat', user_api.dangXuat);
 
+//login
+router.post('/login', userApi.login)
+
+//user 
+router.get('/user', userApi.list)
+router.post('/user/add', uploadAvata.single("upload-avata"), userApi.add)
+router.put('/user/edit/:id', uploadAvata.single("upload-avata"), userApi.edit)
+router.delete('/user/delete/:id', userApi.delete)
+
+//product 
+router.get('/product', prodApi.list)
+router.post('/product/add', uploadProd.single("upload-prod"), prodApi.add)
+router.put('/product/edit/:id', uploadProd.single("upload-prod"), prodApi.edit)
+router.delete('/product/delete/:id', prodApi.delete)
+
+//category tốt
+router.get('/category', cateApi.list)
+router.post('/category/add', cateApi.add)
+router.put('/category/edit/:id', cateApi.edit)
+router.delete('/category/delete/:id', cateApi.delete)
+
+//role tốt
+router.get('/role', roleApi.list)
+router.post('/role/add', roleApi.add)
+router.put('/role/edit/:id', roleApi.edit)
+router.delete('/role/delete/:id', roleApi.delete)
 
 module.exports = router;
+

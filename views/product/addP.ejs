@@ -1,0 +1,61 @@
+<%- include('../inc/header.ejs') %>
+    <h2 class="text-center mb-4" style="color: #ea5120;">
+        <%= title %>
+    </h2>
+    <!-- Thêm sản phẩm -->
+    <div class="row mb-5">
+        <div class="col-md-2 col-sm-1"></div>
+        <div class="col-md-8 col-sm-10 mt-4 card boderCard">
+            <div class="text-center mt-4">
+                <p style="color: red; font-style: italic; font-size: 16px;">
+                    <%= msg %>
+                </p>
+            </div>
+            <form class="pt-2 row mb-3" action="" method="POST" enctype="multipart/form-data">
+                    <div class="col-md-1 "></div>
+                    <div class="col-md-10 row">
+                        <!--image -->
+                        <div class="col-md-7">
+                            <input name="upload-prod" type="file" class="form-control boderBtn" required>
+                        </div>
+                        <div class="col-md-5">
+                            <select name="category" class="form-select boderBtn"
+                            aria-label="Default select example">
+                            <option selected>Chọn thể loại</option>
+                            <% listTL.forEach( (row)=> { %>
+                                <option value="<%= row._id %>">
+                                    <%= row.name %>
+                                </option>
+                                <% }); %>
+                        </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputPassword4" class="form-label formtext">Tên sản phẩm</label>
+                            <input name="name" type="text" class="form-control boderBtn" id="inputPassword4" placeholder="họ và tên của bạn">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="inputPassword4" class="form-label formtext">Số lượng</label>
+                            <input name="price" type="number" class="form-control boderBtn" id="inputPassword4" placeholder="họ và tên của bạn">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="inputPassword4" class="form-label formtext">Giá</label>
+                            <input name="quantity" type="number" class="form-control boderBtn" id="inputPassword4" placeholder="họ và tên của bạn">
+                        </div>
+                        <!--chi tiết -->
+                        <div class="form-floating mt-4">
+                            <textarea name="detail" class="form-control boderBtn rounded-2"
+                            placeholder="Nhập mô tả sản phẩm" id="floatingTextarea2" style="height: 100px"
+                            required></textarea>
+                            <label class="ms-3" for="floatingTextarea2">Mô tả sản phẩm</label>
+                        </div>
+                        <div class="mt-5 text-center mb-5">
+                            <button type="submit" class=" btnCustom"
+                                style="width: 200px; height: 48px; font-size: 24px;">Save</button>
+                        </div>
+                    </div>
+                    <div class="col-md-1 "></div>
+            </form>
+        </div>
+        <div class="col-md-2 col-sm-1"></div>
+    </div>
+    <%- include('../inc/footer.ejs') %>

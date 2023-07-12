@@ -1,24 +1,17 @@
 var express = require('express');
 var router = express.Router();
-var userCtrl = require('../controller/user.controller');
-var multer = require('multer')
-var uploadAvata = multer({dest: './tmp'})
-var middleware = require('../middleware/check_login');
-router.use(middleware.dieuHuongDangNhap)
+var userCtrl = require('../controllers/user.controller');
+var check = require('../middleware/check');
+router.use(check.login);
 
-router.get('/', userCtrl.listUser)
-router.get('/filter/:role', userCtrl.listUser)
-router.get('/sort/:username', userCtrl.listUser)
+router.get('/', userCtrl.listUser);
 router.get('/search', userCtrl.listUser)
+router.get('/sort-age/:age', userCtrl.listUser)
+router.get('/sort-name/:fullname', userCtrl.listUser)
 
-router.get('/add', userCtrl.addUser)
-router.post('/add', uploadAvata.single("avata"), userCtrl.addUser)
+router.get('/block-user/:idUser', userCtrl.blockUser)
+router.get('/unblock-user/:idUser', userCtrl.unBlockUser)
 
-router.get('/edit/:iduser', userCtrl.editUser)
-router.post('/edit/:iduser', uploadAvata.single("avata"), userCtrl.editUser)
 
-router.get('/delete/:iduser', userCtrl.deleteUser)
-
-router.get('/block', userCtrl.blockUser)
 
 module.exports = router;

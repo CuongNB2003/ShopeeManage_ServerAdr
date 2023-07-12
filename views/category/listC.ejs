@@ -1,0 +1,143 @@
+<%- include('../inc/header.ejs') %>
+
+    <h2 class="text-center mb-4" style="color: #ea5120;">
+        <%= title %>
+    </h2>
+    <!-- Thanh Dieu khien -->
+    <div class="row">
+        <div class="col-md-6 col-sm-12 row">
+            <div class="col-md-3 col-sm-6 mt-2">
+                <a href="/category/add">
+                    <button type="button" class="btnCustom" style="width: 150px;">Thêm</button>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12 d-flex justify-content-end">
+            <nav class="navbar">
+                <div class="container-fluid">
+                    <form class="d-flex" role="search" action="/category/search/">
+                        <input class="form-control me-2 boderBtn" type="search" placeholder="Search theo tên"
+                            aria-label="Search" style="width: 282px;" name="name">
+                        <button class="btnCustom" type="submit" style="width: 150px;">Tìm kiếm</button>
+                    </form>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Bảng -->
+    <table class="table table-bordered table-hover mt-2">
+        <thead class="borderTable bg-thead">
+            <tr>
+                <th scope="col" class="col-1 text-center">STT</th>
+                <th scope="col" class="col-9 text-center">Tên</th>
+                <th scope="col" class="col-2 text-center">Chức năng</th>
+            </tr>
+        </thead>
+        <tbody class="borderTable">
+            <% for(let i=0;i < listCate.length ; i++){ %>
+                <tr>
+                    <th scope="row" class="text-center">
+                        <%= i + 1 %>
+                    </th>
+                    <td class="text-center">
+                        <%= listCate[i].name %>
+                    </td>
+                    <td class="text-center">
+                        <!-- Chức năng sửa -->
+                        <button type="button" class="btnTable me-5" data-bs-toggle="modal"
+                            data-bs-target="#sua<%= listCate[i]._id %>">
+                            <i class="bi bi-pencil-square " style="font-size: 2rem;"></i>
+                        </button>
+                        <div class="modal fade" id="sua<%= listCate[i]._id %>" tabindex="-1"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <form action="" method="POST">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Sửa thể loại</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <input type="hidden" name="idCat" value="<%= listCate[i]._id %>">
+                                            <div class=" form-floating">
+                                                <input type="text" class="form-control boderBtn rounded-2"
+                                                    value="<%= listCate[i].name %>" name="name" required>
+                                                <label class="ms-3" for="floatingInput">Tên thể loại</label>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Hủy</button>
+                                            <button class="btn btn-primary">Sửa</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Chức năng xóa -->
+                        <button type="button" class="btnTable" data-bs-toggle="modal"
+                            data-bs-target="#xoa<%= listCate[i]._id %>" style="width: 48px; height: 48px;">
+                            <i class="bi bi-trash-fill" style="font-size: 2rem;"></i>
+                        </button>
+
+                        <div class="modal fade" id="xoa<%= listCate[i]._id %>" tabindex="-1"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa thể loại</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Bạn có chắc muốn xóa loại sản phẩm này ?</p>
+                                        <p>Nếu xóa thì các sản phẩm có cùng thể loại cũng bị xóa theo!</p>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Hủy</button>
+
+                                        <a class="btn btn-primary"
+                                            href="/category/delete/<%= listCate[i]._id %>">Xóa</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+    <!-- Chia  -->
+    <% let countV = 1 %>
+    <div class="row">
+        <div class="col-6 d-flex justify-content-start">
+            <b style="font-size: 16px;">Số lượng: <%= count %></b>
+        </div>
+        <div class="col-6 d-flex justify-content-end">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <% for(let i = 0; i < count ; i += 5){ %>
+                            
+                    <li class="page-item"><a class="page-link" href="/category?Index=<%= i %>"><%= countV %></a></li>
+                <% 
+                    countV++;  
+                 } %>
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+        </div>
+    </div>
+
+<%- include('../inc/footer.ejs') %>

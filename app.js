@@ -7,10 +7,11 @@ var session = require('express-session')
 
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
-var sanphamRouter = require('./routes/sanpham');
-var theloaiRouter = require('./routes/theloai');
-var ApiRouter = require('./routes/api');
-var checkDangNhap = require('./middleware/check_login')
+var staffRouter = require('./routes/staff');
+var productRouter = require('./routes/product');
+var categoryRouter = require('./routes/category');
+var apiRouter = require('./routes/api')
+var checkLogin = require('./middleware/check');
 
 
 var app = express();
@@ -25,50 +26,52 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-  secret: 'NDFHnafidsfnadhf23nfsdhf23njNDFInn34ddfasdfsadfasdjnfjadfadsfasdfasdfasfAAA',
+  secret: 'CUONGPROFULLSTACKDEVOLOPERHEHECUONGSIUCAPVIPPROHIHICUONGSOCODEHMMCUONGVOTRI',
   resave: true,
   saveUninitialized: true
 }))
 
+app.use('/', indexRouter);
+app.use('/user', 
+            checkLogin.login, 
+            userRouter);
+app.use('/staff', 
+            checkLogin.login, 
+            staffRouter);
+app.use('/product', 
+            checkLogin.login, 
+            productRouter);
+app.use('/category', 
+            checkLogin.login, 
+            categoryRouter);
+app.use('/api', apiRouter);
 
-app.use('/', 
-    indexRouter);
-app.use('/user',
-    checkDangNhap.dieuHuongDangNhap, 
-    userRouter);
-app.use('/category',
-    checkDangNhap.dieuHuongDangNhap, 
-    theloaiRouter);
-app.use('/product',
-    checkDangNhap.dieuHuongDangNhap, 
-    sanphamRouter);
-app.use('/api', 
-    ApiRouter);
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-
-  // địa chỉ truy cập bằng api: /api/xxxx
-  if(req.originalUrl.indexOf('/api') == 0){
+  // code api
+  if(req.originalUri.indexOf('/api') == 0){
     res.json(
       {
-        msg: err.message
+        msg : err.message
       }
-    );
+    )
   }else{
-    res.render('error');
+    res.render('error')
   }
+
+  res.render('error');
 });
 
 module.exports = app;
